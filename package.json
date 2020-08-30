@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "eventwebi2t",
+=======
+  "name": "eventappi2t",
+>>>>>>> 5569326363d335e398448b3a55a08e939cf867d1
   "version": "0.1.0",
   "private": true,
   "dependencies": {
