@@ -1,31 +1,29 @@
 import React, { Fragment } from 'react';
-import Carousel from '../carousel';
 
 function Header() {
   return (
       <Fragment>
-          <button type="button" className="mobile-nav-toggle d-lg-none"><i className="icofont-navigation-menu"></i></button>
-    <header id="header" className="d-flex align-items-center">
-            <div className="container d-flex align-items-center">
-
-              <div className="logo mr-auto">
-                  <h1 className="text-light"><a href="index.html">I2T<span>Evénement</span></a></h1>
-            
-                    </div>
-
-                  <nav className="nav-menu d-none d-lg-block" id="topbar">
-                      <ul>
-                          <li className="active"><a href="#header">Bienvenue</a></li>
-                          <li><a href="#about">Programme</a></li>
-                          <li><a href="#team">Contactez Nous</a></li>
-                          <li><a href="#team">Apropos</a></li>
-                          <li><a href="#services">Evénements passés</a></li>
-                      </ul>
-                  </nav>
-            </div>
-    </header>
+          <header>
+              <nav id="navbar_top" className="navbar navbar-expand-lg navbar-dark bg-light">
+                  <div className="container">
+                      <a className="navbar-brand text-dark" style={{ fontSize: '20px' }}  href="#">I2T<span>Event</span></a>
+                      <button className="navbar-toggler" style={{ backgroundColor: '#e74c3c' }} type="button" data-toggle="collapse" data-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+                          <span className="navbar-toggler-icon text-dark" ></span>
+                      </button>
+                      <div className="collapse navbar-collapse" id="main_nav">
+                          <ul className="navbar-nav ml-auto">
+                              <li className="active"><a className="nav-link text-dark"  href="#hero" style={{ fontSize: '15px' }}>Bienvenue</a></li>
+                              <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#about">Programme</a></li>
+                              <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#team">Contactez Nous</a></li>
+                              <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#services">Apropos</a></li>
+                              <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#services">Evénements passés</a></li>
+                          </ul>
+                      </div> 
+</div> 
+</nav>
+          </header>
  
-        <Carousel/>
+      
     </Fragment>
   );
 }

@@ -2,10 +2,10 @@ import React,{Fragment} from 'react'
 
 
 
-const About = () => {
+const Contact = () => {
     return(
         <Fragment>
-        <section id="contact" className="contact">
+            <section id="team" className="contact">
             <div className="container">
 
                      <div className="section-title">
@@ -77,6 +77,6 @@ const About = () => {
     );
 }
 
-export default About
+export default Contact
 
 

@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import About from '../Home/About_us'
+import Contact from '../Home/contact'
 import Header from '../Home/header';
 import Carousel from '../Home/carousel';
 
@@ -7,8 +7,8 @@ function App() {
   return (
     <Fragment>
       <Header/>
-      <Carousel/>
-      <About />
+      <Carousel />
+      <Contact />
     </Fragment>
   );
 }

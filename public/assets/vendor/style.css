@@ -131,8 +131,8 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
 }
 
-#header .logo h1 a span, #header .logo h1 a:hover span {
-  color: #e74c3c;
+a:hover span {
+  color: red;
 }
 
 #header .logo img {
@@ -169,8 +169,8 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
 }
 
-.nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
-  color: #e74c3c;
+ .nav-menu li:hover > a {
+  color: red;
   text-decoration: none;
 }
 
@@ -207,7 +207,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #354144;
 }
 
-.nav-menu .drop-down ul a:hover, .nav-menu .drop-down ul .active > a, .nav-menu .drop-down ul li:hover > a {
+.nav-menu li:hover > a {
   color: #01b1d7;
 }
 
@@ -484,7 +484,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
   margin: 10px;
   color: #fff;
-  background: #01b1d7;
+  background: #e74c3c;
   -webkit-animation-delay: 0.8s;
   animation-delay: 0.8s;
 }
@@ -554,7 +554,7 @@ section {
 .section-title span {
   position: absolute;
   top: 30px;
-  color: #f3f5f5;
+  color: #e74c3c;
   left: 0;
   right: 0;
   z-index: 1;
@@ -682,10 +682,9 @@ section {
   font-weight: 700;
 }
 
-.counts .counters span {
-  font-size: 48px;
-  display: block;
-  color: #01b1d7;
+.navbar-brand span {
+  font-size: 30px;
+  color:#e74c3c;
 }
 
 .counts .counters p {
