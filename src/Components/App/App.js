@@ -1,13 +1,15 @@
-import React from 'react';
-import Header from '../Home/header/index'
-
+import React, { Fragment } from 'react';
+import About from '../Home/About_us'
+import Header from '../Home/header';
+import Carousel from '../Home/carousel';
 
 function App() {
   return (
-    <div className="App">
+    <Fragment>
       <Header/>
-    </div>
+      <Carousel/>
+      <About />
+    </Fragment>
   );
 }
-
 export default App;
