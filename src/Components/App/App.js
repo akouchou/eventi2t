@@ -1,17 +1,25 @@
 import React, { Fragment } from 'react';
-import Contact from '../Home/contact'
+
 import Header from '../Home/header';
-import Carousel from '../Home/carousel';
-import Cards from '../Home/Card';
+import Home from '../Home/index'
+import Event from '../Event/index'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom' 
+import Footer from '../Home/footer';
 
 function App() {
   return (
-    <Fragment>
+    <Router>
+
       <Header/>
-      <Carousel />
-      <Cards />
-      <Contact />
-    </Fragment>
+
+      <Switch>
+      <Route path="/event" component={Event} />
+        <Route path="/" component={Home} />
+        
+      </Switch>
+      
+      <Footer/>
+    </Router>
   );
 }
 export default App;

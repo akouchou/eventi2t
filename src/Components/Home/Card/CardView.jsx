@@ -1,6 +1,7 @@
 import React from 'react';
 import img1 from '../Card/yaounde.jpg';
 import {Card, Button} from 'react-bootstrap';
+import {Link} from 'react-router-dom'
 
 
 const CardView = () => {
@@ -14,7 +15,7 @@ const CardView = () => {
                 Some quick example text to build on the card title and make up the bulk of
                 the card's content.
             </Card.Text>
-            <Button variant="danger">Plus d'infos</Button>
+            <Link to="/event" variant="danger">Plus d'infos</Link>
         </Card.Body>
     </Card>
     </div>

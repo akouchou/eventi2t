@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom'
 
 function Carousel() {
   return (
@@ -28,7 +29,7 @@ function Carousel() {
                                   <div className="carousel-content">
                                       <h2 className="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
                                       <p className="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                                      <a href="#about" className="btn-get-started scrollto animate__animated animate__fadeInUp">Read More</a>
+                                      <Link to="/event" className="btn-get-started scrollto animate__animated animate__fadeInUp">Read More</Link>
                                   </div>
                               </div>
                           </div>
