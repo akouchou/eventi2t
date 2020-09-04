@@ -6,7 +6,7 @@ import { render } from "@testing-library/react";
 
     const calculateTimeLeft = () => {
         let year = new Date().getFullYear();
-        const difference = +new Date(`${year}-10-1`) - +new Date();
+        const difference = +new Date(`${year}-11-1`) - +new Date();
         let timeLeft = {};
     
         if (difference > 0) {

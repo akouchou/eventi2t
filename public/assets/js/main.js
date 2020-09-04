@@ -4,6 +4,7 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+// eslint-disable-next-line no-unused-expressions
 !(function($) {
  
 
@@ -24,6 +25,7 @@
 
   // Init AOS
   function aos_init() {
+    // eslint-disable-next-line no-undef
     AOS.init({
       duration: 1000,
       easing: "ease-in-out-back",
@@ -34,4 +36,5 @@
     aos_init();
   });
 
+// eslint-disable-next-line no-undef
 })(jQuery);
