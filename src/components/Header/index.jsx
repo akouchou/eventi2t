@@ -36,4 +36,4 @@ const Header = () => {
     )
 }
 
-export defaul
+export default Header

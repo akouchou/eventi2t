@@ -1,4 +1,5 @@
 import React, {Fragment} from 'react';
+import { Link } from 'react-router-dom'
 
 const Aside = () => {
     return(
@@ -10,10 +11,10 @@ const Aside = () => {
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li>
-                            <a href="index.html" class="waves-effect"><i class="fa fa-clock-o m-r-10" aria-hidden="true"></i>Dashboard</a>
+                            <Link to="/dashboard" class="waves-effect"><i class="fa fa-clock-o m-r-10" aria-hidden="true"></i>Dashboard</Link>
                         </li>
                         <li>
-                            <a href="pages-profile.html" class="waves-effect"><i class="fa fa-user m-r-10" aria-hidden="true"></i>Administrateur</a>
+                            <Link  to="/admin" class="waves-effect"><i class="fa fa-user m-r-10" aria-hidden="true"></i>Administrateur</Link>
                         </li>
                         <li>
                             <a href="table-basic.html" class="waves-effect"><i class="fa fa-table m-r-10" aria-hidden="true"></i>Utilisateurs</a>

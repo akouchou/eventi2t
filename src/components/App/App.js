@@ -4,16 +4,23 @@ import Aside from '../SideNav/index'
 import Dashboard from '../Home/Dashboard/index'
 import Admin from '../Home/Profile_Admin/index'
 
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom' 
+
 
 
 const App = () => {
   return(
-    <Fragment>
-       <Header/>
+    <Router>
+       <Header/>      
        <Aside/>
-       <Dashboard/>
-       <Admin/>
-    </Fragment>
+
+       <Switch>
+          <Route path="/dashboard" component={Dashboard}/>
+          <Route path="/admin" component={Admin}/>
+          <Route path="/" component={Dashboard}/>
+       </Switch>
+
+    </Router>
   )
 }
 
