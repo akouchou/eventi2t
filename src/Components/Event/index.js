@@ -62,7 +62,7 @@ class Event extends Component {
                     <div className="container">
 
                         <div className="section-title">
-                            <span style={{color: "gray"}} >Intervenant</span>
+                            <span style={{opacity: 0.4}} >Intervenant</span>
                             <h2>Intervenant</h2>
                              <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
                         </div>
@@ -110,7 +110,7 @@ class Event extends Component {
                     <div className="container">
 
                         <div className="section-title">
-                        <span>Partenaires</span>
+                        <span style={{opacity: 0.4}} >Partenaires</span>
                         <h2>Partenaires</h2>
 
                         </div>

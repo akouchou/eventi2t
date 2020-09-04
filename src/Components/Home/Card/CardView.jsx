@@ -1,6 +1,6 @@
 import React from 'react';
 import img1 from '../Card/yaounde.jpg';
-import {Card, Button} from 'react-bootstrap';
+import {Card} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 
 
