@@ -3,7 +3,7 @@ import React, {Fragment } from 'react';
 const Header = () => {
     return(
         <Fragment>
-        <header class="topbar fix-top">
+        <header class="topbar fixed-top">
             <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">
     
                 <div class="navbar-header">

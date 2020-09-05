@@ -1,8 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Header from '../Header/index'
-import Aside from '../SideNav/index'
-import Dashboard from '../Home/Dashboard/index'
-import Admin from '../Home/Profile_Admin/index'
+import Home from '../Home/index'
+import Signup from '../Signup/index'
 
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom' 
 
@@ -12,12 +11,10 @@ const App = () => {
   return(
     <Router>
        <Header/>      
-       <Aside/>
-
+       
        <Switch>
-          <Route path="/dashboard" component={Dashboard}/>
-          <Route path="/admin" component={Admin}/>
-          <Route path="/" component={Dashboard}/>
+          <Route path="/home" component={Home} />
+          <Route path="/" component={Signup}/>
        </Switch>
 
     </Router>
