@@ -25,7 +25,7 @@ class Firebase {
         this.auth.createUserWithEmailAndPassword(email, password)
     )
 
-    createEvent = (data) => this.db.collection('evenements').doc('uid').set(data)
+    createEvent = (data) => this.db.collection('evenements').add(data)
 
 }
 
