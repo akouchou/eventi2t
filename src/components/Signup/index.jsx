@@ -15,7 +15,7 @@ const Signup = () => {
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
                 </div>
-                <Link to="/home" type="submit" class="btn btn-primary">Submit</Link>
+                <Link to="/home"  class="btn btn-primary">Submit</Link>
             </div>
             
         </form>
