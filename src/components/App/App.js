@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../Header/index'
 import Home from '../Home/index'
 import Signup from '../Signup/index'
+import Register from '../Register/index'
 
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom' 
 
@@ -14,7 +15,9 @@ const App = () => {
        
        <Switch>
           <Route path="/home" component={Home} />
-          <Route path="/" component={Signup}/>
+          <Route path="/register" component={Register}/>
+          <Route exact path="/" component={Signup}/>
+         
        </Switch>
 
     </Router>
