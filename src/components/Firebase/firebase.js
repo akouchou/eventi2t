@@ -1,6 +1,7 @@
 import app from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
+import 'firebase/storage'
 
 
 const config = {
@@ -19,13 +20,16 @@ class Firebase {
         app.initializeApp(config)
         this.auth = app.auth()
         this.db = app.firestore()
+        this.dbSt = app.storage()
     }
 
     signupUser = (email, password) => (
         this.auth.createUserWithEmailAndPassword(email, password)
     )
 
-    createEvent = (data) => this.db.collection('evenements').add(data)
+    createEvent = () => this.db.collection('evenements')
+
+   // sendImage = (image) => this.dbSt.ref().child(`image_evenement/${image.titre}`)
 
 }
 
