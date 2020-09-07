@@ -11,33 +11,53 @@ const AddEvent = (props) => {
     const event = {
         titre: '',
         description: '',
-        date: null,
+        date: '',
         ville: '',
         quartier: ''
-
     }
+
 
     const [eventData, setEventData] = useState(event)
     const [error, setError] = useState('')
+
+    const [urlImage, setUrlImage] = useState(null)
 
 
 
     const handleChange = (e) => {
         setEventData({...eventData, [e.target.id]: e.target.value})
     }
-    const handleSubmit = (e) => {
+    const handleImageChange = e => {
+        setUrlImage(e.target.files[0])
+    }
+   const handleSubmit = async e => {
         e.preventDefault()
-        firebase.createEvent(
-            eventData
-        ).then(() => {
-             console.log("event created");
-             setEventData({...eventData})
 
-         }).catch((error) => {
-             console.log(error);
-            setError(error)
-            setEventData({...eventData})
-         })
+        const storageRef = await firebase.sendImage(urlImage)
+        storageRef.put(urlImage).on('state_changed', snap => {
+
+        }, (error) => { console.log(error) }, () => {
+            storageRef.getDownloadURL().then(
+                url => {
+                    firebase.createEvent().add({
+                        titre: eventData.titre,
+                        description: eventData.description,
+                        date: eventData.date,
+                        ville: eventData.ville,
+                        quartier: eventData.quartier,
+                        urlImage: url
+                    })
+                }
+            )
+            .then(() => {
+                console.log("evenement créé")
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        } )
+       
+       
     }
 
 
@@ -61,27 +81,27 @@ const AddEvent = (props) => {
                             <div class="card-block">
                                 <form onSubmit={handleSubmit} class="form-horizontal form-material">
                                     <div class="form-group">
-                                        <label class="col-md-12">Entrer le titre de L'evenement</label>
+                                        <label class="col-md-12">Entrer les titre de L'evenement</label>
                                         <div class="col-md-12">
-                                            <input type="text" onChange={handleChange} value={eventData.titre} id="titre" placeholder="Titre de L'evenement " class="form-control form-control-line"/>
+                                                <input type="text" onChange={handleChange} value={eventData.titre} id="titre" placeholder="Titre de L'evenement " class="form-control form-control-line"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Description de L'venement</label>
                                         <div class="col-md-12">
-                                            <textarea rows="5" onChange={handleChange} value={eventData.description} id="description" class="form-control form-control-line"></textarea>
+                                                <textarea rows="5" onChange={handleChange} value={eventData.description} id="description" class="form-control form-control-line"></textarea>
                                         </div>
                                     </div>
                                     <div className="row form-group">
                                         <label className="col-md-12" >Entrer les photos de l'evenement</label>
                                         <div className="col-md-4">
-                                            <input type="file" className="form-control form-control-line" name="" id=""/>
+                                            <input type="file" onChange={handleImageChange} className="form-control form-control-line" name="" id=""/>
                                         </div>
                                         <div className="col-md-4">
-                                            <input type="file" className="form-control form-control-line" name="" id=""/>
+                                                <input type="file" onChange={handleImageChange}  className="form-control form-control-line" name="" id=""/>
                                         </div>
                                         <div className="col-md-4">
-                                            <input type="file" className="form-control form-control-line" name="" id=""/>
+                                                <input type="file" onChange={handleImageChange}  className="form-control form-control-line" name="" id=""/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -91,13 +111,13 @@ const AddEvent = (props) => {
                                     <div class="form-group">
                                         <label class="col-md-12">Entrer la date de L'evenement</label>
                                         <div class="col-md-12">
-                                            <input type="date" onChange={handleChange} value={eventData.date} id="date"  class="form-control form-control-line" name="" id=""/>
+                                            <input type="text" onChange={handleChange} value={eventData.date} id="date" placeholder="jj/mm/yyyy"  class="form-control form-control-line" name="" id=""/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Entrer la ville de L'evenement</label>
                                         <div class="col-md-12">
-                                            <input type="text" onChange={handleChange} value={eventData.ville} id="ville" placeholder="ville de L'evenement " class="form-control form-control-line"/>
+                                            <input type="text" onChange={handleChange} value={eventData.ville}  id="ville" placeholder="ville de L'evenement " class="form-control form-control-line"/>
                                         </div>
                                     </div>  
                                     <div class="form-group">
@@ -106,7 +126,7 @@ const AddEvent = (props) => {
                                             <input type="text" onChange={handleChange} value={eventData.quartier} id="quartier" placeholder="Quatier de L'evenement " class="form-control form-control-line"/>
                                         </div>
                                     </div>  
-                                    <button type="submit" class="btn btn-success">CREER L'EVENEMENT</button>
+                                    <button class="btn btn-success">CREER L'EVENEMENT</button>
                                 </form>
                             </div>
                         </div>
