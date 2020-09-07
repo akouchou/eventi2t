@@ -1,7 +1,28 @@
 import React, { Component, Fragment } from 'react';
+import Countdown from '../Home/countdown/countdown.jsx'
+import {Button, Modal, Form} from 'react-bootstrap';
+
 
 class Event extends Component {
+
+    state = {
+        show: false
+    }
+
     render() {
+
+        const handleShow = () => {
+            this.setState({
+                show:true
+            })
+        }
+
+        const handleClose = () => {
+            this.setState({
+                show:false
+            })
+        }
+
         return(  
             <Fragment>
                 <section id="hero">
@@ -17,6 +38,10 @@ class Event extends Component {
                             <div className="carousel-content">
                                 <h2 className="animate__animated animate__fadeInDown">Bienvenue  <span>Titre Evenement</span></h2>
                                 <p className="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                                <Button className="animate__animated animate__fadeInUp" variant="danger" onClick={handleShow} >
+                                            Réservation
+                                </Button>
+
                             </div>
                             </div>
                         </div>
@@ -27,6 +52,33 @@ class Event extends Component {
                     </div>
                     </div>
                 </section>
+
+                <Modal show={this.state.show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" centered>
+                <Modal.Header closeButton>
+                    <Modal.Title> <p style={{textAlign:"center"}}>RESERVER VOTRE PLACE</p></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+
+                    <Form>
+                        <Form.Group controlId="formBasicEmail">
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Control type="email" placeholder="i2tgroup@gmail.com" />
+                            <Form.Text className="text-muted">
+                            We'll never share your email with anyone else.
+                            </Form.Text>
+                        </Form.Group> 
+                    </Form>
+
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="danger" onClick={handleClose}>
+                        Réserver
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+                <Countdown timeTillDate="10 26 2020, 6:00 am" timeFormat="MM DD YYYY, h:mm a" />
+
                 
                 <section id="about" className="about section-bg">
                     <div className="container">
@@ -62,7 +114,7 @@ class Event extends Component {
                     <div className="container">
 
                         <div className="section-title">
-                            <span style={{opacity: 0.4}} >Intervenant</span>
+                            <span style={{opacity: 0.1, color:"black"}} >Intervenant</span>
                             <h2>Intervenant</h2>
                              <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
                         </div>
@@ -110,7 +162,7 @@ class Event extends Component {
                     <div className="container">
 
                         <div className="section-title">
-                        <span style={{opacity: 0.4}} >Partenaires</span>
+                        <span style={{opacity: 0.1, color: "black"}} >Partenaires</span>
                         <h2>Partenaires</h2>
 
                         </div>

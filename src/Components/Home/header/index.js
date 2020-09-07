@@ -21,41 +21,11 @@ function Header() {
                                 <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#team">Contactez Nous</a></li>
                                 <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#services">Apropos</a></li>
                                 <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#services">Evénements passés</a></li>
-                                <li className="active">
-                                    <a className="nav-link text-dark"  href="#hero" style={{ fontSize: '15px' }}>
-                                        <Button variant="danger" onClick={handleShow}>
-                                            Réservation
-                                        </Button>
-                                    </a>
-                                </li>
                             </ul>
                         </div> 
                     </div> 
                 </nav>
             </header>
-            <Modal show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" centered>
-                <Modal.Header closeButton>
-                    <Modal.Title> <p style={{textAlign:"center"}}>RESERVER VOTRE PLACE</p></Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-
-                    <Form>
-                        <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="i2tgroup@gmail.com" />
-                            <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                            </Form.Text>
-                        </Form.Group> 
-                    </Form>
-
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="danger" onClick={handleClose}>
-                        Réserver
-                    </Button>
-                </Modal.Footer>
-            </Modal>
  
         </Fragment>
     );
