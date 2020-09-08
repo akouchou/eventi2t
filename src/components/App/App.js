@@ -1,26 +1,23 @@
 import React from 'react';
-import Header from '../Header/index'
 import Home from '../Home/index'
 import Signup from '../Signup/index'
 import Register from '../Register/index'
+import { BrowserRouter } from 'react-router-dom';
 
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom' 
+import { Route, Switch} from 'react-router-dom' 
+import PrivateRoute from '../PrivateRoute';
 
-
+//
 
 const App = () => {
   return(
-    <Router>
-       <Header/>      
-       
+    <BrowserRouter>
        <Switch>
-          <Route path="/home" component={Home} />
-          <Route path="/register" component={Register}/>
-          <Route exact path="/" component={Signup}/>
-         
+        <Route path="/singin" component={Signup} />
+        <PrivateRoute path="/" component={Home} />
+        <Route path="/singup" component={Register}/>
        </Switch>
-
-    </Router>
+    </BrowserRouter>
   )
 }
 
