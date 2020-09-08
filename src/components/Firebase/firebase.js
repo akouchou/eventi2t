@@ -20,17 +20,17 @@ class Firebase {
         app.initializeApp(config)
         this.auth = app.auth()
         this.db = app.firestore()
-        this.dbSt = app.storage()
+        this.dbst = app.storage() 
     }
 
     signupUser = (email, password) => (
         this.auth.createUserWithEmailAndPassword(email, password)
     )
 
+    sendImage = (image) => this.dbst.ref().child(`images_evenements/${image.name}`)
+
     createEvent = () => this.db.collection('evenements')
-
-   // sendImage = (image) => this.dbSt.ref().child(`image_evenement/${image.titre}`)
-
+ 
 }
 
 export default Firebase
