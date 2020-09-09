@@ -22,11 +22,13 @@ const AddEvent = (props) => {
 
     const [files, setFiles] = useState([])
 
+   // const [urlVideo, setUrlVideo] = useState(null)
+
     const handleChange = (e) => {
         setEventData({...eventData, [e.target.id]: e.target.value})
     }
     const handleImageChange = e => {
-        for(let i = 0; i< e.target.files.length; i++) {
+        for(let i = 0; i<= e.target.files.length; i++) {
             const newFile = e.target.files[i];
             newFile["id"] = Math.random()
 
@@ -34,8 +36,13 @@ const AddEvent = (props) => {
         }
     }
 
-    const handleSubmit = e => {
+  /*  const handleVideoChange = e => {
+        setUrlVideo(e.target.files[0])
+    }*/
+
+    const handleSubmit = async e => {
         e.preventDefault()
+        const urlsImage = []
         const promises = []
         files.forEach(file => {
             const uploadTask = firebase.sendImage(file).put(file)
@@ -44,32 +51,58 @@ const AddEvent = (props) => {
                 'state_changed',
                  snapshot => {
                      const progress = (snapshot.bytesTransfered / snapshot.totalBytes) * 100
-                     
-                         console.log(`progress: ${progress}%`);
-                     
+                        console.log(`progress: ${progress}%`);                    
                  },
                  error => console.log(error),
                  async () => {
                          await uploadTask.snapshot.ref.getDownloadURL().then(
-                         urls => {
-                            firebase.createEvent().add({
-                                titre: eventData.titre,
-                                description: eventData.description,
-                                date: eventData.date,
-                                ville: eventData.ville,
-                                quartier: eventData.quartier,
-                                urlImage: urls
-                            })
-                         }
-                     )
-                     .then(() => {
-                         console.log("evenement créé");
-                     })
-                     .catch(error => console.log(error)) 
+                             url => {
+                                 urlsImage.push(url)
+                             }
+                         )                                       
                  }
              )
+        })       
+        Promise.all(promises)
+        .then(() => {
+            firebase.createEvent().add({
+                titre: eventData.titre,
+                description: eventData.description,
+                date: eventData.date,
+                ville: eventData.ville,
+                quartier: eventData.quartier,
+                urlImage: urlsImage
+            })
+            alert("Votre évènement a été créé")
+            return dialog
         })
+        .catch(error => {
+        console.log(error)
+         
+            })
     }
+
+    const dialog = (
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    )
 
 
     return ( 
@@ -111,7 +144,7 @@ const AddEvent = (props) => {
                                     </div>
                                     <div className="form-group">
                                         <label class="col-md-12">Entrer une video de L'evenement si possible</label>
-                                        <input type="file"  className="form-control form-control-line" id=""/>
+                                        <input type="file" /*onChange={handleVideoChange} */ className="form-control form-control-line" id=""/>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Entrer la date de L'evenement</label>

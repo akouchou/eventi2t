@@ -30,6 +30,8 @@ class Firebase {
     sendImage = (image) => this.dbst.ref().child(`images_evenements/${image.name}`)
 
     createEvent = () => this.db.collection('evenements')
+
+ //   sendVideo = (video) => this.dbst.ref().child(`videos_evenements/${video.name}`)
  
 }
 
