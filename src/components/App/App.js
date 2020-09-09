@@ -18,6 +18,7 @@ const App = () => {
         
         <Route path="/singup" component={Register}/>
         <PrivateRoute  path="/" component={Home} />
+      
        </Switch>
     </BrowserRouter>
   )

@@ -43,7 +43,7 @@ class Firebase {
  
     //ajouter un partenaire
 
-    createPartner = () => this.db.collection('partenaire')
+    createPartner =() => this.db.collection('partenaire')
         
 
 
