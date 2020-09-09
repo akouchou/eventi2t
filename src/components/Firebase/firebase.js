@@ -22,10 +22,20 @@ class Firebase {
         this.db = app.firestore()
         this.dbst = app.storage() 
     }
+    //inscription utilisateur
+    signupUser = (email, password) =>
+        this.auth.createUserWithEmailAndPassword(email, password);
+   
+    //connexion utilisateur
+    loginUser = (email, password) =>
+        this.auth.signInWithEmailAndPassword(email, password);
 
-    signupUser = (email, password) => (
-        this.auth.createUserWithEmailAndPassword(email, password)
-    )
+    //creer user
+    user = uid => this.db.doc(`admin/${uid}`);
+
+    //deconnexion utilisateur
+    signoutUser = () => this.auth.signOut();
+
 
     sendImage = (image) => this.dbst.ref().child(`images_evenements/${image.name}`)
 

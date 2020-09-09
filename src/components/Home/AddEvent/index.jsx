@@ -107,14 +107,14 @@ const AddEvent = (props) => {
 
     return ( 
         <Fragment>
-           <div className="page-wrapper">
-            <div className="container-fluid">
-                <div className="row page-titles">
-                    <div className="col-md-6 col-8 align-self-center">
-                        <h3 className="text-themecolor m-b-0 m-t-0">Ajouter un Evenement</h3>
-                        <ol className="breadcrumb">
-                            <li className="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li className="breadcrumb-item active">Ajouter un Evenement</li>
+           <div class="page-wrapper">
+            <div class="container-fluid">
+                <div class="row page-titles">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <h3 class="text-themecolor m-b-0 m-t-0">Ajouter un Evenement</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><Link to="/">Home</Link></li>
+                            <li class="breadcrumb-item active">Ajouter un Evenement</li>
                         </ol>
                     </div>
             
@@ -164,7 +164,9 @@ const AddEvent = (props) => {
                                             <input type="text" onChange={handleChange}  id="quartier" placeholder="Quatier de L'evenement " class="form-control form-control-line"/>
                                         </div>
                                     </div>  
-                                    <button class="btn btn-success">CREER L'EVENEMENT</button>
+                                    <div className="text-center">
+                                    <button class="btn btn-danger">CREER L'EVENEMENT</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>

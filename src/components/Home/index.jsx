@@ -2,21 +2,26 @@ import React, { Fragment } from 'react';
 import Dashboard from './Dashboard/index'
 import Aside from './SideNav/index'
 import AddEvent from './AddEvent/index'
-
-
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom' 
+import Header from '../Header/index'
+import { Route, Switch } from 'react-router-dom';
 
 const Home = () => {
     return ( 
-        <Router>
-            <Aside/>
+        <Fragment>
+           
+            <div id="main-wrapper">
+                <Header />  
             
-            <Switch>
-                <Route path="/dashboard" component={Dashboard}/>
-                <Route path="/admin" component={AddEvent}/>
-            </Switch>
-            
-        </Router>
+                    <Aside/>
+                    
+                    <Switch>
+                        <Route exact path="/" component={Dashboard}/>
+                        <Route path="/dashboard" component={Dashboard} />
+                        <Route path="/admin" component={AddEvent}/>
+                    </Switch>
+        
+            </div>
+        </Fragment>
      );
 }
  

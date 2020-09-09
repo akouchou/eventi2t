@@ -1,34 +1,57 @@
-import React, {Fragment } from 'react';
+import React, { Fragment, useContext, useEffect } from 'react';
+import { FirebaseContext } from '../Firebase'
+import { Link } from 'react-router-dom';
+import { authContext } from '../Contexts/AuthContext';
 
 const Header = () => {
+
+    const firebase = useContext(FirebaseContext)
+    const { setAuthData, auth } = useContext(authContext);
+
+
+    const handleLogOut = e => {
+
+        firebase.signoutUser()
+        console.log("Déconnexion");
+        setAuthData(null);
+    }
+
+
     return(
         <Fragment>
-        <header class="topbar fixed-top">
-            <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">
-    
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
-                     <h2>EventAdmin</h2>
-                    </a>
-                </div>
-                
-                <div class="navbar-collapse">
-               
-                    <ul class="navbar-nav mr-auto mt-md-0 ">
-                       
-                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
-                        <li class="nav-item hidden-sm-down">
-                            <form class="app-search p-l-20">
-                                <input type="text" class="form-control" placeholder="Search for..." /> <a class="srh-btn"><i class="ti-search"></i></a>
-                            </form>
+            <header className="topbar">
+                <nav className="navbar top-navbar  navbar-toggleable-sm navbar-light" > 
+     
+                    <div className="navbar-header" style={{ position: "fixed" }}>
+                        <a className="navbar-brand" href="/">
+                          
+                        <b>
+                             
+                            <img src="assets/images/logo-icon.png" alt="homepage" className="dark-logo" />
+
+                            </b>
+                           
+                        <span>
+                               
+                            <img src="assets/images/logo-text.png" alt="homepage" className="dark-logo" />
+                            </span>
+                        </a>
+                    </div>
+           
+                <div className="navbar-collapse" >
+                    <ul className="navbar-nav mr-auto mt-md-0 ">
+                  
+                        <li className="nav-item"> <a className="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i className="ti-menu"></i></a> </li>
+                            <li className="nav-item hidden-sm-down">
+                                
                         </li>
                     </ul>
-          
-                    <ul class="navbar-nav my-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/users/1.jpg" alt="user" class="profile-pic m-r-5" />Markarn Doe</a>
-                        </li>
-                    </ul>
+                    <ul className="navbar-nav my-lg-0">
+                                <li className="nav-item dropdown">
+                                    <a className="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <Link onClick={handleLogOut} className="fa fa-sign-out text-white"></Link></a>
+                                </li>
+                            </ul>
                 </div>
             </nav>
         </header>
