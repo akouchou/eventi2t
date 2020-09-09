@@ -71,7 +71,7 @@ const Signup = (props) => {
                                         <div className="col-sm-12 text-center">
                                     {btn ? <button className="btn btn-primary btn-block loginbtn">Login</button> : <button className="btn btn-success btn-block loginbtn" disabled>Login</button>}
 
-                                          
+                                 
                                         </div>
                                     </div>
                                 </form>

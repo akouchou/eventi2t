@@ -14,8 +14,9 @@ const App = () => {
     <BrowserRouter>
        <Switch>
         <Route path="/singin" component={Signup} />
-        <PrivateRoute path="/" component={Home} />
+      
         <Route path="/singup" component={Register}/>
+        <PrivateRoute path="/" component={Home} />
        </Switch>
     </BrowserRouter>
   )
