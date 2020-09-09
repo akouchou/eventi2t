@@ -41,6 +41,13 @@ class Firebase {
 
     createEvent = () => this.db.collection('evenements')
  
+    //ajouter un partenaire
+
+    createPartner = () => this.db.collection('partenaire')
+        
+
+
+
 }
 
 export default Firebase

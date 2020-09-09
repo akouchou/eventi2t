@@ -2,6 +2,7 @@ import React from 'react';
 import Home from '../Home/index'
 import Signup from '../Signup/index'
 import Register from '../Register/index'
+import AddPartner from '../Home/Partner/index'
 import { BrowserRouter } from 'react-router-dom';
 
 import { Route, Switch} from 'react-router-dom' 
@@ -14,8 +15,9 @@ const App = () => {
     <BrowserRouter>
        <Switch>
         <Route path="/singin" component={Signup} />
-        <PrivateRoute path="/" component={Home} />
+        
         <Route path="/singup" component={Register}/>
+        <PrivateRoute  path="/" component={Home} />
        </Switch>
     </BrowserRouter>
   )
