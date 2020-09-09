@@ -28,7 +28,7 @@ const AddEvent = (props) => {
         setEventData({...eventData, [e.target.id]: e.target.value})
     }
     const handleImageChange = e => {
-        for(let i = 0; i<= e.target.files.length; i++) {
+        for(let i = 0; i< e.target.files.length; i++) {
             const newFile = e.target.files[i];
             newFile["id"] = Math.random()
 
@@ -74,7 +74,7 @@ const AddEvent = (props) => {
                 urlImage: urlsImage
             })
             alert("Votre évènement a été créé")
-            return dialog
+            return {dialog}
         })
         .catch(error => {
         console.log(error)
