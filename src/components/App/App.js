@@ -1,26 +1,26 @@
-import React, { Fragment } from 'react';
-import Header from '../Header/index'
-import Aside from '../SideNav/index'
-import Dashboard from '../Home/Dashboard/index'
-import Admin from '../Home/Profile_Admin/index'
+import React from 'react';
+import Home from '../Home/index'
+import Signup from '../Signup/index'
+import Register from '../Register/index'
+import AddPartner from '../Home/Partner/index'
+import { BrowserRouter } from 'react-router-dom';
 
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom' 
+import { Route, Switch} from 'react-router-dom' 
+import PrivateRoute from '../PrivateRoute';
 
-
+//
 
 const App = () => {
   return(
-    <Router>
-       <Header/>      
-       <Aside/>
-
+    <BrowserRouter>
        <Switch>
-          <Route path="/dashboard" component={Dashboard}/>
-          <Route path="/admin" component={Admin}/>
-          <Route path="/" component={Dashboard}/>
+        <Route path="/singin" component={Signup} />
+        
+        <Route path="/singup" component={Register}/>
+        <PrivateRoute  path="/" component={Home} />
+      
        </Switch>
-
-    </Router>
+    </BrowserRouter>
   )
 }
 
