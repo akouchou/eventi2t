@@ -44,6 +44,10 @@ class Firebase {
     //ajouter un partenaire
 
     createPartner =() => this.db.collection('partenaire')
+
+    selectEvent = () => this.db.collection('evenements')
+
+    deleteEvent = (id) => this.db.collection('evenements').doc(id).delete();
         
 
 
