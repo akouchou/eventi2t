@@ -7,21 +7,39 @@ import { FirebaseContext } from '../../Firebase'
 
     const [siteAdress, setSiteAdress] = useState('')
 
+    const [imagPartner , setImagPartner] = useState(null)
+
     const handleInputChange = e => {
         setSiteAdress(e.target.value)
     }
-    const handleSubmit = e => {
+    const handleImage = e => {
+        setImagPartner(e.target.files[0])
+
+    }
+
+    const handleSubmit = async e => {
         e.preventDefault()
 
-        firebase.createPartner().add({
-            partenaires: siteAdress
-        })
-        .then(() => {
-            alert("partenaire ajouté")
-        })
-        .catch((error) => {
-           alert(error)
-        })
+        const storagePartner = await firebase.sendPhoto(imagPartner)
+        storagePartner.put(imagPartner).on('state_changed', 
+            snap => console.log('snap'), 
+            error => console.log(error), 
+            () => {
+                storagePartner.getDownloadURL().then((url) => {
+                    firebase.createPartner().add({
+                        addresse_site_partenaire: siteAdress,
+                        urlImage: url 
+                    })
+                }).catch((error) => {
+                    alert(error)
+                } )
+            }
+             )
+
+             
+
+
+       
     }
             
 
@@ -44,7 +62,7 @@ import { FirebaseContext } from '../../Firebase'
                             <div className="row form-group">
                                         <label className="col-md-12" >Entrer les photos des partenaires</label>
                                         <div className="col-md-12">
-                                            <input type="file" className="form-control form-control-line" name="" id=""/>
+                                            <input onChange={handleImage} type="file" className="form-control form-control-line" name="" id=""/>
                                         </div>
                             </div>
 

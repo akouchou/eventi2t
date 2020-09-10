@@ -44,9 +44,10 @@ class Firebase {
     //ajouter un partenaire
 
     createPartner =() => this.db.collection('partenaire')
+    sendPhoto =(image) => this.dbst.ref().child(`images_partenaire/${image.name}`) 
         
 
-
+0
 
 }
 
