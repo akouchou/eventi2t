@@ -1,35 +1,39 @@
 import React, { useState, useContext, useEffect} from 'react';
-import { FirebaseContext } from '../Firebase';
+import { FirebaseContext } from '../../Firebase'
 import { Link } from 'react-router-dom';
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import * as ReactBootStrap from "react-bootstrap";
 
 
-function Events() {
+const  Events = () => {
 
     const firebase = useContext(FirebaseContext)
+
     const [tasks, setTasks] = useState([])
     const [loading, setLoading] = useState(false)
 
+    //const data = []
+
     useEffect(() => {
         const fetchData = async () =>{
-            const db = firebase.selectEvent().onSnapshot(function(data){
+            await firebase.selectEvent().onSnapshot(data => {
                 setTasks(data.docs.map(doc => ({...doc.data(), id: doc.id })));
                 setLoading(true)
             })
             
         };
         fetchData()
-    }, [firebase, tasks]);
 
-    function imageFormatter(cell) {
+    }, []);
+
+    const  imageFormatter = cell => {
         return (
             <img src={cell} width="100px" height="100px" className="" alt="Event cover" />
            
         );
     }
-    function actionFormatter(cell) {
+    const  actionFormatter = cell => {
         return (
             <span>
                 <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
@@ -38,14 +42,19 @@ function Events() {
                 <button type="button"  onClick={() => onDelete(cell)} rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
                     <i class="material-icons">close</i>
                 </button>
+                <button type="button"  /*onClick={() => viewDetail(cell)}*/ rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                    Detail
+                </button>
             </span>
         );
     }
 
     const columns = [
-        { dataField: "titre", text: "Noms"},
-        { dataField: "date", text: "Dates"},
-        { dataField: "urlImage", text: "Images", formatter: imageFormatter},
+        { dataField: "titre", text: "Titre"},
+        { dataField: "description", text: "Description"},
+        { dataField: "date", text: "Date"},
+        { dataField: "ville", text: "Ville"},
+        { dataField: "quartier", text: "Quartier"},
         { dataField: "id", text: "Actions", formatter: actionFormatter }
     ]
 
@@ -55,16 +64,14 @@ function Events() {
      }
 
     return(
-        <>
-
-            <div class="col-lg-12 col-md-12">
+            <div class="col-lg-12 col-md-12 page-wrapper">
                 <Link class="btn btn-primary" to="/admin" >
-                        Ajouter une catégorie
+                        Ajouter un Evenement
                 </Link>
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title">Catégories </h4>
-                        <p class="card-category">Exchange by 3DM</p>
+                        <h4 class="card-title">Evenements </h4>
+                        <p class="card-category">I2T group</p>
                     </div>
                     <div class="card-body table-responsive">
                         {loading ?(
@@ -82,7 +89,6 @@ function Events() {
                     </div>
                 </div>
             </div>
-        </>
     );
 
 

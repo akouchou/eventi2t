@@ -76,6 +76,7 @@ const AddEvent = (props) => {
                 urlImage: urlsImage
             })
             alert("Votre évènement a été créé")
+            props.history.push('/Events')
         })
         .catch(error => {
         console.log(error)
