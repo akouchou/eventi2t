@@ -6,7 +6,7 @@ import Header from '../Header/index'
 import AddPartner from './Partner/index'
 import { Route, Switch } from 'react-router-dom';
 import Events from './Events/index'
-import eventDetail from './EventDetail';
+import EventDetail from './EventDetail';
 
 const Home = () => {
     return ( 
@@ -22,8 +22,9 @@ const Home = () => {
                         <Route path="/dashboard" component={Dashboard} />
                         <Route path="/admin" component={AddEvent}/>
                         <Route path="/partner" component={AddPartner}/> 
+                        <Route path="/Events/:id" component={EventDetail} />
                         <Route path="/Events" component={Events}/> 
-                        <Route path="/Events/:id" component={eventDetail} />
+                        
                     </Switch>
         
             </div>

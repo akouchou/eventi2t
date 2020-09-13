@@ -44,17 +44,16 @@ class Firebase {
     //ajouter un partenaire
 
     createPartner =() => this.db.collection('partenaire')
-<<<<<<< HEAD
+
     sendPhoto =(image) => this.dbst.ref().child(`images_partenaire/${image.name}`) 
-=======
 
     selectEvent = () => this.db.collection('evenements')
 
     deleteEvent = (id) => this.db.collection('evenements').doc(id).delete();
->>>>>>> afb737a5588d0f28abbec95f82b56c948a519f90
+
+    detailEvent = () => this.db.collection('evenements')
         
 
-0
 
 }
 
