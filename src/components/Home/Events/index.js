@@ -36,14 +36,16 @@ const  Events = () => {
     const  actionFormatter = cell => {
         return (
             <span>
+                <button type="button"  /*onClick={() => viewDetail(cell)}*/ rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                    
+                <Link to="/EventDetail" class="waves-effect"><i class="fa fa-users m-r-10" aria-hidden="true"></i>Detail</Link>
+
+                </button>
                 <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
                     <i class="material-icons">edit</i>
                 </button>
                 <button type="button"  onClick={() => onDelete(cell)} rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
                     <i class="material-icons">close</i>
-                </button>
-                <button type="button"  /*onClick={() => viewDetail(cell)}*/ rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                    Detail
                 </button>
             </span>
         );
