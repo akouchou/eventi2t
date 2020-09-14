@@ -25,6 +25,7 @@ const EventDetail = ({ match }) => {
     }, []);
 
     console.log(dataEvent)
+   // console.log(dataEvent.urlImage[0]);
     // ajout du partenaire a l'evenement 
 
     const [siteAdress, setSiteAdress] = useState('')
@@ -57,6 +58,8 @@ const EventDetail = ({ match }) => {
         )
     }    
 
+    
+
 
     return (
         <div class="page-wrapper"> 
@@ -66,7 +69,7 @@ const EventDetail = ({ match }) => {
                         <h3 class="text-themecolor m-b-0 m-t-0">Detail de l'évènement</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><Link to="/Events">liste des évènements</Link></li>
-                            <li class="breadcrumb-item active">Detail de l'éevènements : { dataEvent.titre } </li>
+                            <li class="breadcrumb-item active">Detail de l'évènements : { dataEvent.titre } </li>
                         </ol>
                     </div>
 
@@ -90,8 +93,11 @@ const EventDetail = ({ match }) => {
                         <p className="card-text">
                            le quartier ou l'évènement se deroulera : { dataEvent.quartier }
                         </p>
+                       
                     </div>
                 </div>
+
+                <img src={ dataEvent.urlImage } style={{ width:"300px", height: "170px" }}  alt=""/>
 
                 <Fragment>        
                        
