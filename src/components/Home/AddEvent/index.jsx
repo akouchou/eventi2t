@@ -146,7 +146,7 @@ const AddEvent = (props) => {
                                     </div>  
                                   
                                     <div className="text-center">
-                                     <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">CREER L'EVENEMENT</button>
+                                     <button class="btn btn-danger" >CREER L'EVENEMENT</button>
                                     </div>
                                 </form>
                             </div>

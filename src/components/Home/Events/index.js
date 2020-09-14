@@ -29,13 +29,17 @@ const  Events = () => {
 
     const  imageFormatter = cell => {
         return (
-            <img src={cell} width="100px" height="100px" className="" alt="Event cover" />
+            <img src={cell} width="100px" height="100px" className=""  />
            
         );
     }
+
+
+
     const  actionFormatter = cell => {
         return (
             <span>
+<<<<<<< HEAD
                 <button type="button"  /*onClick={() => viewDetail(cell)}*/ rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
                     
                 <Link to="/EventDetail" class="waves-effect"><i class="fa fa-users m-r-10" aria-hidden="true"></i>Detail</Link>
@@ -47,6 +51,15 @@ const  Events = () => {
                 <button type="button"  onClick={() => onDelete(cell)} rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
                     <i class="material-icons">close</i>
                 </button>
+=======
+                <Link type="button" to={`/Events/${cell}`} rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                    <i class="material-icons">info</i>
+                </Link>
+                <button type="button"  onClick={() => onDelete(cell)} rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                    <i class="material-icons">close</i>
+                </button>
+            
+>>>>>>> d83743f51bca8213584715fc0d3004adee7f1fdd
             </span>
         );
     }
@@ -66,17 +79,30 @@ const  Events = () => {
      }
 
     return(
-            <div class="col-lg-12 col-md-12 page-wrapper">
+        <div class="page-wrapper">
+        <div class="container-fluid">
+        <div class="row page-titles">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <h3 class="text-themecolor m-b-0 m-t-0">Liste des evenements</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><Link to="/">Home</Link></li>
+                            <li class="breadcrumb-item active">Liste des éevènements</li>
+                        </ol>
+                    </div>
+            
+                </div>
+            <div class="col-lg-12 col-md-12 ">
                 <Link class="btn btn-primary" to="/admin" >
                         Ajouter un Evenement
                 </Link>
+               
                 <div class="card">
                     <div class="card-header card-header-primary">
                         <h4 class="card-title">Evenements </h4>
                         <p class="card-category">I2T group</p>
                     </div>
                     <div class="card-body table-responsive">
-                        {loading ?(
+                        {loading ? (
                             <BootstrapTable
                                 keyField="id"
                                 data={tasks}
@@ -84,13 +110,17 @@ const  Events = () => {
                                 pagination={paginationFactory()}
                             />
                         ):(
-                            <ReactBootStrap.Spinner animation="border" />
+                            <div className="spinner-border text-center" role="status">
+                              <span className="sr-only">Loading...</span>
+                            </div>
                          )
 
                         }
                     </div>
                 </div>
             </div>
+        </div> 
+        </div>   
     );
 
 
