@@ -20,7 +20,7 @@ const Aside = () => {
                                 <Link to="/Events" class="waves-effect"><i class="fa  fa-file-text m-r-10" aria-hidden="true"></i>Liste des Evenements</Link>
                         </li>
                         <li>
-                                <Link to="/" class="waves-effect"><i class="fa fa-users m-r-10" aria-hidden="true"></i>Partenaires</Link>
+                                <Link to="/" class="waves-effect"><i class="fa fa-users m-r-10" aria-hidden="true"></i>Partenaires Entreprise</Link>
                         </li>
                      
                     </ul>

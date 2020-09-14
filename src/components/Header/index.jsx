@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { FirebaseContext } from '../Firebase'
 import { Link } from 'react-router-dom';
 import { authContext } from '../Contexts/AuthContext';
