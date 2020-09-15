@@ -1,27 +1,41 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, useContext, useState, useEffect } from 'react';
+import { FirebaseContext } from '../Firebase'
 import Countdown from '../Home/countdown/countdown.jsx'
 import {Button, Modal, Form} from 'react-bootstrap';
 
 
-class Event extends Component {
+const Event = ({ match }) =>  {
 
-    state = {
-        show: false
-    }
 
-    render() {
 
+    const [show, setShow] = useState(false)
+  
         const handleShow = () => {
-            this.setState({
-                show:true
-            })
+           setShow(true)
         }
 
         const handleClose = () => {
-            this.setState({
-                show:false
-            })
+           setShow(false)
         }
+        
+        const firebase = useContext(FirebaseContext)
+        const [dataEvent, setDataEvent] = useState([])
+
+        const id = match.params.id
+
+        useEffect(() => {
+            const fetchDataEvent = async () => {
+                await firebase.detailEvent().doc(id).get()
+                .then(doc => {
+                    dataEvent.push(doc.data())
+                    dataEvent.forEach(x => setDataEvent(x))
+                })
+            }
+    
+            fetchDataEvent()
+        }, []);
+
+        console.log(dataEvent.titre);
 
         return(  
             <Fragment>
@@ -33,10 +47,10 @@ class Event extends Component {
                         <div className="carousel-inner" role="listbox">
 
                         
-                        <div className="carousel-item active" style={{ backgroundImage: 'url(assets/img/slide/slide-1.jpg)' }}>
+                        <div className="carousel-item active">
                             <div className="carousel-container">
                             <div className="carousel-content">
-                                <h2 className="animate__animated animate__fadeInDown">Bienvenue  <span>Titre Evenement</span></h2>
+                                <h2 className="animate__animated animate__fadeInDown">Bienvenue  <span>{dataEvent.titre}</span></h2>
                                 <p className="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
                                 <Button className="animate__animated animate__fadeInUp" variant="danger" onClick={handleShow} >
                                             Réservation
@@ -53,7 +67,7 @@ class Event extends Component {
                     </div>
                 </section>
 
-                <Modal show={this.state.show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" centered>
+                <Modal show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header closeButton>
                     <Modal.Title> <p style={{textAlign:"center"}}>RESERVER VOTRE PLACE</p></Modal.Title>
                 </Modal.Header>
@@ -61,8 +75,8 @@ class Event extends Component {
 
                     <Form>
                         <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="i2tgroup@gmail.com" />
+                            <label>Email address</label>
+                            <input className="form-control" type="email" placeholder="i2tgroup@gmail.com" />
                             <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                             </Form.Text>
@@ -77,7 +91,7 @@ class Event extends Component {
                 </Modal.Footer>
             </Modal>
 
-                <Countdown timeTillDate="10 26 2020, 6:00 am" timeFormat="MM DD YYYY, h:mm a" />
+                <Countdown timeTillDate="09 30 2020, 6:00 am" timeFormat="MM DD YYYY, h:mm a" />
 
                 
                 <section id="about" className="about section-bg">
@@ -95,8 +109,8 @@ class Event extends Component {
                             culpa qui officia deserunt mollit anim id est laborum
                             </p>
                             <ul>
-                            <li><i className="ri-check-double-line"></i> Ville</li>
-                            <li><i className="ri-check-double-line"></i> Quartier</li>
+                            <li><i className="ri-check-double-line"></i> {dataEvent.ville}</li>
+                            <li><i className="ri-check-double-line"></i> {dataEvent.quartier}</li>
                             <li><i className="ri-check-double-line"></i> Date</li>
                             <li><i className="ri-check-double-line"></i> Heure</li>
                             </ul>
@@ -190,6 +204,5 @@ class Event extends Component {
             </Fragment>
         )
     }
-}
 
 export default Event
