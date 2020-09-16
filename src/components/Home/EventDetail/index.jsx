@@ -81,10 +81,10 @@ const EventDetail = ({ match }) => {
                                 <img src="" alt="" className="card-img-top" />
                                 <div className="card-body">
                                     <div class="form-row  text-center">
-
+ 
                                         <div class="col-3">
                                             <button class="btn btn-secondary"><i class="fa fa-navicon m-r-10" aria-hidden="true"></i> Liste des réservations</button>
-                                        </div>
+                                         </div>
                                         <div class="col-3">
                                             <button class="btn btn-secondary"><i class="fa fa fa-handshake-o m-r-10" aria-hidden="true"></i> Liste des partenaires</button>
                                         </div>
