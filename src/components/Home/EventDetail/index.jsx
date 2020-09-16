@@ -26,6 +26,33 @@ const EventDetail = ({ match }) => {
         fetchDataEvent()
     }, []);
 
+    const change = firebase.detailEvent().doc(params.id)
+    //differentes fonction de changement de statut
+    const changeStatus1 = () => {
+        change.update({
+            status: "1"
+        }).then(() => alert("marqué comme évènement principale"))
+    }
+    const changeStatus2 = () => {
+        change.update({
+            status: "2"
+        }).then(() => alert("marqué comme évènement a venir"))
+    }
+    const changeStatus3 = () => {
+        change.update({
+            status: "3"
+        }).then(() => alert("marqué comme évènement passé"))
+    }
+    const changeStatus4 = () => {
+        change.update({
+            status: "4"
+        }).then(() => alert("marqué comme évènement Archivé"))
+    }
+
+    //
+
+    console.log(dataEvent.status);
+
 
     return (
         <div class="page-wrapper"> 
@@ -47,10 +74,15 @@ const EventDetail = ({ match }) => {
                 <div className="card" >
                     <img src="" alt="" className="card-img-top" />
                     <div className="card-body">
+                    <h2 class="text-themecolor m-b-0 m-t-0 ml-4">{dataEvent.titre} </h2> <br/>
                         <div className="row mb-5">
-                            <h2 class="text-themecolor m-b-0 m-t-0 ml-4">{dataEvent.titre} </h2>
-                                        <button className="btn btn-danger ml-2"><i class="fa fa-power-off m-r-10" aria-hidden="true"></i> Désactiver l'évènement</button>
-                                        <button class="btn btn-danger ml-2"><i class="fa fa-trash-o m-r-10" aria-hidden="true"></i>Supprimer l'évènement</button>
+                           
+                            
+                                        { dataEvent.status == 1 ? <button onClick={changeStatus1} disabled className="btn btn-primary ml-2">Evenement Principale</button> : <button onClick={changeStatus1} className="btn btn-primary ml-2">Evenement Principale</button> }
+                                        { dataEvent.status == 2 ? <button onClick={changeStatus2} disabled className="btn btn-primary ml-2">Evenement A venir</button> : <button onClick={changeStatus2} className="btn btn-primary ml-2">Evenement A venir</button>}
+                                        { dataEvent.status == 3 ? <button onClick={changeStatus3} disabled className="btn btn-primary ml-2">Evenement passé</button> : <button onClick={changeStatus3} className="btn btn-primary ml-2">Evenement passé</button>}
+                                        { dataEvent.status == 4 ? <button onClick={changeStatus4} disabled className="btn btn-primary ml-2">Archiver l'Evenement</button> : <button onClick={changeStatus4} className="btn btn-primary ml-2">Archiver l'Evenement</button>}
+                                      
                         </div>
                         <div className="row">
                             <img src={dataEvent.urlImage} style={{ width: "200px", height: "100px" }} className="rounded mx-auto d-block" alt="..." />
@@ -116,7 +148,7 @@ const EventDetail = ({ match }) => {
                                 <div className="card" >
                                     <img src="" alt="" className="card-img-top" />
                                     <div className="card-body">
-                                       <Intervenant/>
+                                       <Intervenant eventId={params.id} />
                                     </div>
                                 </div>
                             </div>
