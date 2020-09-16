@@ -1,6 +1,8 @@
 import React, { Fragment, useEffect, useContext, useState } from 'react';
 import { FirebaseContext } from '../../Firebase'
 import { Link} from 'react-router-dom'
+import Partenaire from '../AddPartenaire';
+import Intervenant from '../AddIntervenant';
 
 const EventDetail = ({ match }) => {
 
@@ -24,101 +26,102 @@ const EventDetail = ({ match }) => {
         fetchDataEvent()
     }, []);
 
-    console.log(dataEvent)
-    // ajout du partenaire a l'evenement 
-
-    const [siteAdress, setSiteAdress] = useState('')
-
-    const [imagPartner , setImagPartner] = useState(null)
-
-    const handleInputChange = e => {
-        setSiteAdress(e.target.value)
-    }
-    const handleImage = e => {
-        setImagPartner(e.target.files[0])
-
-    }
-
-    const handleSubmit = async e => {
-        e.preventDefault()
-
-        const storagePartner = await firebase.sendPhoto(imagPartner)
-        storagePartner.put(imagPartner).on('state_changed', 
-            snap => console.log('snap'), 
-            error => console.log(error), 
-            () => {
-                storagePartner.getDownloadURL().then((url) => {
-                    firebase.createEvent().doc(params.id).update({
-                        site_du_partenaire: siteAdress,
-                        urlImagePartenaire: url
-                    })
-               }).then(() => alert("partenaire ajouté")).catch(error => alert(error))
-            }
-        )
-    }    
-
 
     return (
         <div class="page-wrapper"> 
             <div className="container-fluid">
                 <div class="row page-titles">
                     <div class="col-md-6 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">Detail de l'évènement</h3>
+                      
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><Link to="/Events">liste des évènements</Link></li>
-                            <li class="breadcrumb-item active">Detail de l'éevènements : { dataEvent.titre } </li>
+                            <li class="breadcrumb-item"><Link to="/Events" className="btn btn-info"><i class="fa fa-reply m-r-10" aria-hidden="true"></i></Link></li>
                         </ol>
                     </div>
 
                 </div>
         <div className="row">
                 <div className="col-md-2"></div>
-                    <div className="col-md-8">
+                <div className="col-md-12">
 
-                <div className="card" style={{width: "40rem", margin: "30px"}}>
+                <div className="col-lg-12 col-xlg-9 col-md-7">
+                <div className="card" >
                     <img src="" alt="" className="card-img-top" />
                     <div className="card-body">
-                        <h5 className="card-title">
-                           titre de l'évènement : { dataEvent.titre}
-                        </h5>
-                        <p className="card-text">
-                           Description { dataEvent.description }
-                        </p>
-                        <p className="card-text">
-                           ville ou se deroulera l"evenement : { dataEvent.ville }
-                        </p>
-                        <p className="card-text">
-                           le quartier ou l'évènement se deroulera : { dataEvent.quartier }
-                        </p>
+                        <div className="row mb-5">
+                            <h2 class="text-themecolor m-b-0 m-t-0 ml-4">{dataEvent.titre} </h2>
+                                        <button className="btn btn-danger ml-2"><i class="fa fa-power-off m-r-10" aria-hidden="true"></i> Désactiver l'évènement</button>
+                                        <button class="btn btn-danger ml-2"><i class="fa fa-trash-o m-r-10" aria-hidden="true"></i>Supprimer l'évènement</button>
+                        </div>
+                        <div className="row">
+                            <img src={dataEvent.urlImage} style={{ width: "200px", height: "100px" }} className="rounded mx-auto d-block" alt="..." />
+                            <img src={dataEvent.urlImage} style={{ width: "200px", height: "100px" }} className="rounded mx-auto d-block" alt="..." />
+                            <img src={dataEvent.urlImage} style={{ width: "200px", height: "100px" }} className="rounded mx-auto d-block" alt="..." />
+                        </div>
+                        <div class="form-row mt-5">
+                            <div class="col-2">
+                                    <label for="">Date :<h5>{dataEvent.nom_article}</h5></label>
+                            </div>
+                            <div class="col-3">
+                                    <label for="">Ville :<h5>{dataEvent.ville}</h5></label>
+                            </div>
+                            <div class="col-3">
+                                <label for="">Quartier :<h5>{dataEvent.quartier}</h5></label>
+                            </div>
+                                     
+                            <div class="col-3">
+                                <label for="">Description :<h6>{dataEvent.description}</h6></label>
+                            </div>
+                        </div>
+  
                     </div>
                 </div>
+            </div>
+                        <div className="col-lg-12 col-xlg-9 col-md-7">
+                            <div className="card" >
+                                <img src="" alt="" className="card-img-top" />
+                                <div className="card-body">
+                                    <div class="form-row  text-center">
 
-                <Fragment>        
-                       
-                                <form onSubmit={handleSubmit}>
-                                    <div className="container-fluid">
-                                        <h2 className="text-center">Ajouter un partenaire a l'evenement: </h2>
-                                        <div class="form-group">
-                                            <label for="exampleInputName">entrer l'adresse du site du partenaire</label>
-                                            <input onChange={handleInputChange} type="text" class="form-control" id="exampleInputName"/>
-
+                                        <div class="col-3">
+                                            <button class="btn btn-secondary"><i class="fa fa-navicon m-r-10" aria-hidden="true"></i> Liste des réservations</button>
                                         </div>
-
-                                        <div className="row form-group">
-                                                    <label className="col-md-12" >Entrer les photos des partenaires</label>
-                                                    <div className="col-md-12">
-                                                        <input onChange={handleImage} type="file" className="form-control form-control-line" name="" id=""/>
-                                                    </div>
+                                        <div class="col-3">
+                                            <button class="btn btn-secondary"><i class="fa fa fa-handshake-o m-r-10" aria-hidden="true"></i> Liste des partenaires</button>
                                         </div>
-
-                                        <div className="text-center">
-                                                <button class="btn btn-primary">AJOUTER</button>
+                                        <div class="col-3">
+                                            <button class="btn btn-secondary"><i class="fa fa-comment m-r-10" aria-hidden="true"></i> Liste des commentaires</button>
                                         </div>
-
+                                        
+                                        <div class="col-3">
+                                            <button class="btn btn-secondary"><i class="fa fa-users  m-r-10" aria-hidden="true"></i> Liste des intervenants</button>
+                                        </div>
+                                        <div class="col-2">
+                                           
+                                        </div>
                                     </div>
-                                </form>
 
-            </Fragment>
+                                </div>
+                            </div>
+                        </div>
+            <div className="row">
+                            <div className="col-lg-6 col-xlg-9 col-md-6">
+                                <div className="card" >
+                                    <img src="" alt="" className="card-img-top" />
+                                    <div className="card-body">
+                                      <Partenaire/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-lg-6 col-xlg-9 col-md-6">
+                                <div className="card" >
+                                    <img src="" alt="" className="card-img-top" />
+                                    <div className="card-body">
+                                       <Intervenant/>
+                                    </div>
+                                </div>
+                            </div>
+            </div>
+
             </div>
            <div className="col-md-2"></div>            
          </div>
