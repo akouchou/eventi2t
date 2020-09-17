@@ -31,7 +31,9 @@ const EventDetail = ({ match }) => {
     const changeStatus1 = () => {
         change.update({
             status: "1"
-        }).then(() => alert("marqué comme évènement principale"))
+        }).then(() => {
+            alert("marqué comme évènement principale")
+        })
     }
     const changeStatus2 = () => {
         change.update({
