@@ -27,6 +27,10 @@ class Firebase {
 
     detailEvent = () => this.db.collection('evenements')
 
+    storeReservation = () => this.db.collection('reservations');
+
+    selectPartenaire = id => this.db.collection('partenaire') .where("id_evenement", "==", id)
+
 }
 
 export default Firebase

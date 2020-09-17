@@ -2,6 +2,9 @@ import React, { Component, Fragment, useContext, useState, useEffect } from 'rea
 import { FirebaseContext } from '../Firebase'
 import Countdown from '../Home/countdown/countdown.jsx'
 import {Button, Modal, Form} from 'react-bootstrap';
+import Addparticip from './AddParticip';
+import { Link } from 'react-router-dom';
+import Partenaire from './Partenaires';
 
 
 const Event = ({ match }) =>  {
@@ -73,22 +76,10 @@ const Event = ({ match }) =>  {
                 </Modal.Header>
                 <Modal.Body>
 
-                    <Form>
-                        <Form.Group controlId="formBasicEmail">
-                            <label>Email address</label>
-                            <input className="form-control" type="email" placeholder="i2tgroup@gmail.com" />
-                            <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                            </Form.Text>
-                        </Form.Group> 
-                    </Form>
+                        <Addparticip id={id} />
 
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="danger" onClick={handleClose}>
-                        Réserver
-                    </Button>
-                </Modal.Footer>
+               
             </Modal>
 
                 <Countdown timeTillDate="09 30 2020, 6:00 am" timeFormat="MM DD YYYY, h:mm a" />
@@ -136,7 +127,7 @@ const Event = ({ match }) =>  {
                         <div className="row">
                             <div className="col-md-6 mt-4">
                                 <div className="member d-flex align-items-start">
-                                    <div className="pic"><img src="assets/img/team/team-3.jpg" className="img-fluid" alt=""/></div>
+                                    <div className="pic"><img src="../assets/img/team/team-3.jpg" className="img-fluid" alt=""/></div>
                                     <div className="member-info">
                                     <h4>William Anderson</h4>
                                     <span>CTO</span>
@@ -153,7 +144,7 @@ const Event = ({ match }) =>  {
 
                             <div className="col-md-6 mt-4">
                                 <div className="member d-flex align-items-start">
-                                    <div className="pic"><img src="assets/img/team/team-4.jpg" className="img-fluid" alt=""/></div>
+                                    <div className="pic"><img src="../assets/img/team/team-4.jpg" className="img-fluid" alt=""/></div>
                                     <div className="member-info">
                                     <h4>Amanda Jepson</h4>
                                     <span>Accountant</span>
@@ -172,33 +163,9 @@ const Event = ({ match }) =>  {
                     </div>  
                 </section>
 
-                <section id="services" className="services section-bg">
-                    <div className="container">
-
-                        <div className="section-title">
-                        <span style={{opacity: 0.1, color: "black"}} >Partenaires</span>
-                        <h2>Partenaires</h2>
-
-                        </div>
-
-                        <div className="row">
-                            <div className="col-md-6">
-                                <div className="icon-box">
-                                <i className="icofont-computer"></i>
-                                <h4><a href="#">Lorem Ipsum</a></h4>
-                                </div>
-                            </div>
-                            <div className="col-md-6 mt-4 mt-md-0">
-                                <div className="icon-box">
-                                <i className="icofont-chart-bar-graph"></i>
-                                <h4><a href="#">Dolor Sitema</a></h4>
-                                </div>
-                            </div>
-                    
-                        </div>
-
-                    </div>
-               </section>
+                <section id="services" className="services section-bg" >
+                    <Partenaire id={id}/>
+                </section>
 
                  
             </Fragment>
