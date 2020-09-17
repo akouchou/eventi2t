@@ -4,7 +4,9 @@ import { Link} from 'react-router-dom'
 import Partenaire from '../AddPartenaire';
 import Intervenant from '../AddIntervenant';
 import { Modal, Button } from 'react-bootstrap';
-import ModalIntervenant from '../Modal';
+import ModalIntervenant from '../ModalIntervenant';
+import ModalPartenaire from '../ModalPartenaire';
+import ModalReservation from '../ModalReservation';
 
 const EventDetail = ({ match }) => {
 
@@ -16,12 +18,16 @@ const EventDetail = ({ match }) => {
    
     const [show, setShow] = useState(false);
     const [showi, setShowi] = useState(false);
+    const [showr, setShowr] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const handleClosei = () => setShowi(false);
     const handleShowi = () => setShowi(true);
+
+    const handleCloser = () => setShowr(false);
+    const handleShowr = () => setShowr(true);
 
     const params = match.params
 
@@ -82,20 +88,28 @@ const EventDetail = ({ match }) => {
                         <div className="row mb-5 text-right">
              
                             {etat === '1'
-                                ? <button class="btn btn-success ml-2" disabled>Evenement Principale</button>
-                                : <button class="btn btn-danger ml-2" onClick={() => changeStatus('1')}>Evenement Principale</button>
+                                ? <button class="btn btn-success ml-2" disabled>
+                                    <i class="fa fa-power-off m-r-10" aria-hidden="true"></i>Evenement Principale</button>
+                                : <button class="btn btn-danger ml-2" onClick={() => changeStatus('1')}>
+                                    <i class="fa fa-power-off m-r-10" aria-hidden="true"></i>Evenement Principale</button>
                             }
                             {etat === '2'
-                                ? <button class="btn btn-success ml-2" disabled>Evenement A venir</button>
-                                : <button class="btn btn-danger ml-2" onClick={() => changeStatus('2')}>Evenement A venir</button>
+                                ? <button class="btn btn-success ml-2" disabled>
+                                    <i class="fa fa-power-off m-r-10" aria-hidden="true"></i>Evenement A venir</button>
+                                : <button class="btn btn-danger ml-2" onClick={() => changeStatus('2')}>
+                                    <i class="fa fa-power-off m-r-10" aria-hidden="true"></i>Evenement A venir</button>
                             } 
                             {etat === '3'
-                                ? <button class="btn btn-success ml-2" disabled>Evenement passé</button>
-                                : <button class="btn btn-danger ml-2" onClick={() => changeStatus('3')}>Evenement passé</button>
+                                ? <button class="btn btn-success ml-2" disabled>
+                                    <i class="fa fa-power-off m-r-10" aria-hidden="true"></i>Evenement passé</button>
+                                : <button class="btn btn-danger ml-2" onClick={() => changeStatus('3')}>
+                                    <i class="fa fa-power-off m-r-10" aria-hidden="true"></i>Evenement passé</button>
                              }
                             {etat === '4'
-                                ? <button class="btn btn-success ml-2" disabled>Archiver l'Evenement</button>
-                                : <button class="btn btn-danger ml-2" onClick={() => changeStatus('4')}>Archiver l'Evenement</button>
+                                ? <button class="btn btn-success ml-2" disabled>
+                                    <i class="fa fa-power-off m-r-10" aria-hidden="true"></i>Archiver l'Evenement</button>
+                                : <button class="btn btn-danger ml-2" onClick={() => changeStatus('4')}>
+                                    <i class="fa fa-power-off m-r-10" aria-hidden="true"></i>Archiver l'Evenement</button>
                             }
 
      
@@ -132,7 +146,7 @@ const EventDetail = ({ match }) => {
                                     <div class="form-row  text-center">
  
                                         <div class="col-3">
-                                            <button class="btn btn-secondary"><i class="fa fa-navicon m-r-10" aria-hidden="true"></i> Liste des réservations</button>
+                                                <button class="btn btn-secondary" onClick={handleShowr}><i class="fa fa-edit m-r-10" aria-hidden="true"></i> Liste des réservations</button>
                                          </div>
                                         <div class="col-3">
                                                 <button class="btn btn-secondary" onClick={handleShow}><i class="fa fa fa-handshake-o m-r-10" aria-hidden="true"></i> Liste des partenaires</button>
@@ -177,6 +191,24 @@ const EventDetail = ({ match }) => {
         </div>
             </div> 
 
+            <Modal
+                show={showr}
+                onHide={handleCloser}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title><i class="fa fa-edit m-r-10" aria-hidden="true"></i>Liste des réservations</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <ModalReservation id={params.id}></ModalReservation>
+
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleCloser}>
+                        Close</Button>
+                </Modal.Footer>
+            </Modal>
 
             <Modal
                 show={show}
@@ -188,8 +220,8 @@ const EventDetail = ({ match }) => {
                     <Modal.Title><i class="fa fa fa-handshake-o m-r-10" aria-hidden="true"></i>Liste des partenaires</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    I will not close if you click outside me. Don't even try to press
-                    escape key.
+                    <ModalPartenaire id={params.id}></ModalPartenaire>
+
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
@@ -209,7 +241,9 @@ const EventDetail = ({ match }) => {
                 </Modal.Header>
                 <Modal.Body>
                   <Fragment>
+
                         <ModalIntervenant id={params.id}></ModalIntervenant>
+                        
                     </Fragment>  
                 </Modal.Body>
                 <Modal.Footer>

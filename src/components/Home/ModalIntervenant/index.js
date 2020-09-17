@@ -13,30 +13,24 @@ const ModalIntervenant = ({id}) => {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+
         const fetchData = async () => {
-            await firebase.selectEvent().onSnapshot(data => {
+            const db = await firebase.listIntervenant(id)
+            .onSnapshot(function (data) {
                 setTasks(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
                 setLoading(true)
             })
 
         };
         fetchData()
-
-    }, []);
-
-    const imageFormatter = cell => {
-        return (
-            <img src={cell} width="100px" height="100px" className="" />
-
-        );
-    }
+    }, [firebase]);
 
 
 
     const actionFormatter = cell => {
         return (
             <span>
-                <button type="button" onClick={() => onDelete(cell)} rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                <button type="button" onClick={() => onDelete(cell)} rel="tooltip" title="Remove" class="btn btn-danger">
                     <i class="fa fa-trash-o m-r-10" aria-hidden="true"></i>
                 </button>
 
@@ -44,18 +38,23 @@ const ModalIntervenant = ({id}) => {
         );
     }
 
+    function imageFormatter(cell) {
+        return (
+            <img src={cell} width="100px" height="70px" className="" />
+
+        );
+    }
     const columns = [
-        { dataField: "titre", text: "Titre" },
-        { dataField: "description", text: "Description" },
-        { dataField: "date", text: "Date" },
-        { dataField: "ville", text: "Ville" },
-        { dataField: "quartier", text: "Quartier" },
+        { dataField: "nom_intervenant", text: "Noms" },
+        { dataField: "urlImageIntervenant", text: "Photos", formatter: imageFormatter },
         { dataField: "id", text: "Actions", formatter: actionFormatter }
     ]
 
-    const onDelete = async (id) => {
-        await firebase.deleteEvent(id)
-        // console.log(id);
+    const onDelete = async (idEv) => {
+        await firebase.deleteIntervenant(idEv).then(()=>{
+            console.log("idEv");
+        })
+       // 
     }
 
   return (

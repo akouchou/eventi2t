@@ -41,11 +41,24 @@ class Firebase {
 
     createEvent = () => this.db.collection('evenements')
 
-
+    /*Intervenants*/
     createSpeaker = () => this.db.collection('intervenants')
- 
+    listIntervenant = (idInt) => this.db.collection('intervenants').where("id_evenement", "==", idInt)
+    deleteIntervenant = (id) => this.db.collection('intervenants').doc(id).delete();
+    /**Fin */
 
+    /**Partenaire */
     createPartner =() => this.db.collection('partenaire')
+    listPartner = (idPart) => this.db.collection('partenaire').where("id_evenement", "==", idPart)
+    deletePartner = (id) => this.db.collection('partenaire').doc(id).delete();
+    /**Fib */
+
+    /**Reservation */
+    listReservation = (idReserv) => this.db.collection('reservations').where("id_evenement", "==", idReserv)
+    deleteReservation = (id) => this.db.collection('reservations').doc(id).delete();
+    /**Fin */
+
+
     sendPhoto = (image) => this.dbst.ref().child(`images_partenaire/${image.name}`) 
     sendPhotoSpeaker = (image) => this.dbst.ref().child(`images_intervenant/${image.name}`) 
 
