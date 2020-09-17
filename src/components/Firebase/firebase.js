@@ -45,6 +45,7 @@ class Firebase {
     createSpeaker = () => this.db.collection('intervenants')
  
 
+    createPartner =() => this.db.collection('partenaire')
     sendPhoto = (image) => this.dbst.ref().child(`images_partenaire/${image.name}`) 
     sendPhotoSpeaker = (image) => this.dbst.ref().child(`images_intervenant/${image.name}`) 
 
