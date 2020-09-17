@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect} from 'react';
 import { FirebaseContext } from '../../Firebase'
 import { Link } from 'react-router-dom';
-import BootstrapTable from "react-bootstrap-table-next"
 import paginationFactory from "react-bootstrap-table2-paginator";
 import * as ReactBootStrap from "react-bootstrap";
+import BootstrapTable from "react-bootstrap-table-next"
 
 
 const  Events = () => {
@@ -39,11 +39,11 @@ const  Events = () => {
     const  actionFormatter = cell => {
         return (
             <span>
-                <Link type="button" to={`/Events/${cell}`} rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                    <i class="material-icons">info</i>
+                <Link type="button" to={`/Events/${cell}`} rel="tooltip" title="Edit Task" >
+                    <i class="fa fa-plus"></i>
                 </Link>
-                <button type="button"  onClick={() => onDelete(cell)} rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                    <i class="material-icons">close</i>
+                <button type="button"  onClick={() => onDelete(cell)} rel="tooltip" title="Remove">
+                    <i class="fa fa-trash-o"></i>
                 </button>
             
             </span>
