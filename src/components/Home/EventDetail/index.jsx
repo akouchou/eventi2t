@@ -108,7 +108,7 @@ const EventDetail = ({ match }) => {
                                 <div className="card" >
                                     <img src="" alt="" className="card-img-top" />
                                     <div className="card-body">
-                                      <Partenaire/>
+                                      <Partenaire eventId={params.id}/>
                                     </div>
                                 </div>
                             </div>

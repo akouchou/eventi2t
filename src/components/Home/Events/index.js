@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect} from 'react';
 import { FirebaseContext } from '../../Firebase'
 import { Link } from 'react-router-dom';
-import BootstrapTable from "react-bootstrap-table-next";
+import BootstrapTable from "react-bootstrap-table-next"
 import paginationFactory from "react-bootstrap-table2-paginator";
 import * as ReactBootStrap from "react-bootstrap";
 
@@ -39,19 +39,6 @@ const  Events = () => {
     const  actionFormatter = cell => {
         return (
             <span>
-<<<<<<< HEAD
-                <button type="button"  /*onClick={() => viewDetail(cell)}*/ rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                    
-                <Link to="/EventDetail" class="waves-effect"><i class="fa fa-users m-r-10" aria-hidden="true"></i>Detail</Link>
-
-                </button>
-                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                    <i class="material-icons">edit</i>
-                </button>
-                <button type="button"  onClick={() => onDelete(cell)} rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                    <i class="material-icons">close</i>
-                </button>
-=======
                 <Link type="button" to={`/Events/${cell}`} rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
                     <i class="material-icons">info</i>
                 </Link>
@@ -59,7 +46,6 @@ const  Events = () => {
                     <i class="material-icons">close</i>
                 </button>
             
->>>>>>> d83743f51bca8213584715fc0d3004adee7f1fdd
             </span>
         );
     }

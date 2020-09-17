@@ -3,7 +3,10 @@ import { FirebaseContext } from '../../Firebase'
 import { Link } from 'react-router-dom'
 
 
-function Partenaire() {
+const Partenaire = (props) =>{
+
+    const eventId = props.eventId
+    //console.log(eventId);
 
     const firebase = useContext(FirebaseContext)
         // ajout du partenaire a l'evenement 
@@ -11,6 +14,7 @@ function Partenaire() {
     const [siteAdress, setSiteAdress] = useState('')
 
     const [imagPartner , setImagPartner] = useState(null)
+
 
     const handleInputChange = e => {
         setSiteAdress(e.target.value)
@@ -22,20 +26,21 @@ function Partenaire() {
 
     const handleSubmit = async e => {
         e.preventDefault()
-/*
+
         const storagePartner = await firebase.sendPhoto(imagPartner)
         storagePartner.put(imagPartner).on('state_changed', 
             snap => console.log('snap'), 
             error => console.log(error), 
             () => {
                 storagePartner.getDownloadURL().then((url) => {
-                    firebase.createEvent().doc(params.id).update({
+                    firebase.createPartner().add({
+                        id_evenement: eventId,
                         site_du_partenaire: siteAdress,
                         urlImagePartenaire: url
                     })
                }).then(() => alert("partenaire ajouté")).catch(error => alert(error))
             }
-        )*/
+        )
     }    
 
   return (
