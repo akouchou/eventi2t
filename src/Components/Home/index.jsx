@@ -3,6 +3,7 @@ import Cards from './Card/index'
 import Carousel from './carousel/index'
 import Contact from './contact/index'
 import Videos from './video/index';
+import ContactUs from './contactUs/index'
 
 const Home = () => {
     return(
@@ -11,6 +12,8 @@ const Home = () => {
            <Videos/>
            <Cards />
            <Contact />
+           <ContactUs />
+
        </Fragment>
     )
 }
