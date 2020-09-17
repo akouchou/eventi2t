@@ -53,8 +53,11 @@ class Firebase {
 
     deleteEvent = (id) => this.db.collection('evenements').doc(id).delete();
 
-    detailEvent = () => this.db.collection('evenements')
-     
+    
+    detailEvent = (id) => this.db.collection('evenements').doc(id)
+    
+    changeStatus = (status) => this.db.collection('evenements').doc(status)
+
     
 
 

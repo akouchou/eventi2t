@@ -10,6 +10,8 @@ const EventDetail = ({ match }) => {
 
     const firebase = useContext(FirebaseContext)
 
+    const [etat, setEtat] = useState('')
+
     const [dataEvent, setDataEvent] = useState([])
    
     const [show, setShow] = useState(false);
@@ -23,44 +25,31 @@ const EventDetail = ({ match }) => {
 
     const params = match.params
 
-    console.log(params);
+   
 
     useEffect(() => {
         const fetchDataEvent = async () => {
-            await firebase.detailEvent().doc(params.id).get()
+            await firebase.detailEvent(params.id).get()
             .then(doc => {
-                dataEvent.push(doc.data())
-                dataEvent.forEach(x => setDataEvent(x))
+                const data = doc.data();
+                dataEvent.push(data)
+               
+                setEtat(data.status)
+                console.log(etat);
             })
+           
         }
-
         fetchDataEvent()
     }, []);
 
-    const change = firebase.detailEvent().doc(params.id)
-    //differentes fonction de changement de statut
-    const changeStatus1 = () => {
-        change.update({
-            status: "1"
-        }).then(() => alert("marqué comme évènement principale"))
-    }
-    const changeStatus2 = () => {
-        change.update({
-            status: "2"
-        }).then(() => alert("marqué comme évènement a venir"))
-    }
-    const changeStatus3 = () => {
-        change.update({
-            status: "3"
-        }).then(() => alert("marqué comme évènement passé"))
-    }
-    const changeStatus4 = () => {
-        change.update({
-            status: "4"
-        }).then(() => alert("marqué comme évènement Archivé"))
-    }
 
-    //
+    //differentes fonction de changement de statut
+    const changeStatus = async (status) => {
+        setEtat(status)
+        await firebase.changeStatus(params.id).update({
+            status: status,
+        })
+    }
 
     console.log(dataEvent.status);
 
@@ -86,37 +75,53 @@ const EventDetail = ({ match }) => {
                 <div className="card" >
                     <img src="" alt="" className="card-img-top" />
                     <div className="card-body">
-                    <h2 class="text-themecolor m-b-0 m-t-0 ml-4">{dataEvent.titre} </h2> <br/>
-                        <div className="row mb-5">
-                           
-                            
-                                        { dataEvent.status == 1 ? <button onClick={changeStatus1} disabled className="btn btn-primary ml-2">Evenement Principale</button> : <button onClick={changeStatus1} className="btn btn-primary ml-2">Evenement Principale</button> }
-                                        { dataEvent.status == 2 ? <button onClick={changeStatus2} disabled className="btn btn-primary ml-2">Evenement A venir</button> : <button onClick={changeStatus2} className="btn btn-primary ml-2">Evenement A venir</button>}
-                                        { dataEvent.status == 3 ? <button onClick={changeStatus3} disabled className="btn btn-primary ml-2">Evenement passé</button> : <button onClick={changeStatus3} className="btn btn-primary ml-2">Evenement passé</button>}
-                                        { dataEvent.status == 4 ? <button onClick={changeStatus4} disabled className="btn btn-primary ml-2">Archiver l'Evenement</button> : <button onClick={changeStatus4} className="btn btn-primary ml-2">Archiver l'Evenement</button>}
-                                      
+                    {dataEvent.map((spell) => ( 
+                        
+                        <Fragment>
+                        <h1 class="text-themecolor m-b-0 m-t-0 ml-4 ">{spell.titre} </h1> <br/>
+                        <div className="row mb-5 text-right">
+             
+                            {etat === '1'
+                                ? <button class="btn btn-success ml-2" disabled>Evenement Principale</button>
+                                : <button class="btn btn-danger ml-2" onClick={() => changeStatus('1')}>Evenement Principale</button>
+                            }
+                            {etat === '2'
+                                ? <button class="btn btn-success ml-2" disabled>Evenement A venir</button>
+                                : <button class="btn btn-danger ml-2" onClick={() => changeStatus('2')}>Evenement A venir</button>
+                            } 
+                            {etat === '3'
+                                ? <button class="btn btn-success ml-2" disabled>Evenement passé</button>
+                                : <button class="btn btn-danger ml-2" onClick={() => changeStatus('3')}>Evenement passé</button>
+                             }
+                            {etat === '4'
+                                ? <button class="btn btn-success ml-2" disabled>Archiver l'Evenement</button>
+                                : <button class="btn btn-danger ml-2" onClick={() => changeStatus('4')}>Archiver l'Evenement</button>
+                            }
+
+     
                         </div>
                         <div className="row">
-                            <img src={dataEvent.urlImage} style={{ width: "200px", height: "100px" }} className="rounded mx-auto d-block" alt="..." />
-                            <img src={dataEvent.urlImage} style={{ width: "200px", height: "100px" }} className="rounded mx-auto d-block" alt="..." />
-                            <img src={dataEvent.urlImage} style={{ width: "200px", height: "100px" }} className="rounded mx-auto d-block" alt="..." />
+                                <img src={spell.urlImage[0] != null || '' ? spell.urlImage[0] : "../assets/images/logo.jpg" } style={{ width: "200px", height: "100px" }} className="rounded mx-auto d-block" alt="..." />
+                                <img src={spell.urlImage[1] != null || '' ? spell.urlImage[1] : "../assets/images/logo.jpg" } style={{ width: "200px", height: "100px" }} className="rounded mx-auto d-block" alt="..." />
+                                <img src={spell.urlImage[2] != null || '' ? spell.urlImage[2] : "../assets/images/logo.jpg" } style={{ width: "200px", height: "100px" }} className="rounded mx-auto d-block" alt="..." />
                         </div>
                         <div class="form-row mt-5">
                             <div class="col-2">
-                                    <label for="">Date :<h5>{dataEvent.nom_article}</h5></label>
+                                    <label for="">Date :<h5>{spell.nom_article}</h5></label>
                             </div>
                             <div class="col-3">
-                                    <label for="">Ville :<h5>{dataEvent.ville}</h5></label>
+                                    <label for="">Ville :<h5>{spell.ville}</h5></label>
                             </div>
                             <div class="col-3">
-                                <label for="">Quartier :<h5>{dataEvent.quartier}</h5></label>
+                                <label for="">Quartier :<h5>{spell.quartier}</h5></label>
                             </div>
                                      
                             <div class="col-3">
-                                <label for="">Description :<h6>{dataEvent.description}</h6></label>
+                                <label for="">Description :<h6>{spell.description}</h6></label>
                             </div>
                         </div>
-  
+                        </Fragment>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -152,7 +157,7 @@ const EventDetail = ({ match }) => {
                                 <div className="card" >
                                     <img src="" alt="" className="card-img-top" />
                                     <div className="card-body">
-                                      <Partenaire eventId={params.id}/>
+                                      <Partenaire/>
                                     </div>
                                 </div>
                             </div>

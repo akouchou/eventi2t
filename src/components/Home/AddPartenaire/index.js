@@ -20,6 +20,15 @@ const Partenaire = (props) =>{
 
     const [imagPartner , setImagPartner] = useState(null)
 
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const handleInputChange = e => {
         setSiteAdress(e.target.value)
@@ -32,6 +41,7 @@ const Partenaire = (props) =>{
     const handleSubmit = async e => {
         e.preventDefault()
 
+        handleClickOpen()
         const storagePartner = await firebase.sendPhoto(imagPartner)
         storagePartner.put(imagPartner).on('state_changed', 
             snap => console.log('snap'), 
@@ -43,7 +53,9 @@ const Partenaire = (props) =>{
                         site_du_partenaire: siteAdress,
                         urlImagePartenaire: url
                     })
-               }).then(() => alert("partenaire ajouté")).catch(error => alert(error))
+               }).then(() => {
+                   handleClose()
+               }).catch(error => alert(error))
             }
         )
     }    
@@ -73,7 +85,26 @@ const Partenaire = (props) =>{
 
               </div>
           </form>
+          <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+          >
+              <DialogTitle id="alert-dialog-title">{"Patienter s'il vous plaît "}</DialogTitle>
+              <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                      <div className="mt-5">
+                          <svg className="circular" viewBox="25 25 50 50">
+                              <circle className="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+                          </svg>
+                      </div>
+                  </DialogContentText>
+              </DialogContent>
+              <DialogActions>
 
+              </DialogActions>
+          </Dialog>
       </Fragment>
   );
 }
