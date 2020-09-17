@@ -40,16 +40,21 @@ class Firebase {
     sendImage = (image) => this.dbst.ref().child(`images_evenements/${image.name}`)
 
     createEvent = () => this.db.collection('evenements')
+
+
+    createSpeaker = () => this.db.collection('intervenants')
  
 
     sendPhoto = (image) => this.dbst.ref().child(`images_partenaire/${image.name}`) 
+    sendPhotoSpeaker = (image) => this.dbst.ref().child(`images_intervenant/${image.name}`) 
 
     selectEvent = () => this.db.collection('evenements')
 
     deleteEvent = (id) => this.db.collection('evenements').doc(id).delete();
 
     detailEvent = () => this.db.collection('evenements')
-        
+     
+    
 
 
 }

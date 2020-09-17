@@ -2,39 +2,41 @@ import React, { Fragment, useEffect, useContext, useState } from 'react';
 import { FirebaseContext } from '../../Firebase'
 import { Link } from 'react-router-dom'
 
-function Intervenant() {
+const Intervenant = (props) => {
+
+    const eventId = props.eventId
+
 
     const firebase = useContext(FirebaseContext)
-    // ajout du partenaire a l'evenement 
+    // ajout dun intervenant a l'evenement 
 
-    const [siteAdress, setSiteAdress] = useState('')
+    const [speakerName, setSpeakerName] = useState('')
 
-    const [imagPartner, setImagPartner] = useState(null)
+    const [imagSpeaker, setImagSpeaker] = useState(null)
 
     const handleInputChange = e => {
-        setSiteAdress(e.target.value)
+        setSpeakerName(e.target.value)
     }
     const handleImage = e => {
-        setImagPartner(e.target.files[0])
-
+        setImagSpeaker(e.target.files[0])
     }
 
     const handleSubmit = async e => {
         e.preventDefault()
-        /*
-                const storagePartner = await firebase.sendPhoto(imagPartner)
-                storagePartner.put(imagPartner).on('state_changed', 
+                const storageSpeaker = await firebase.sendPhotoSpeaker(imagSpeaker)
+                storageSpeaker.put(imagSpeaker).on('state_changed', 
                     snap => console.log('snap'), 
                     error => console.log(error), 
                     () => {
-                        storagePartner.getDownloadURL().then((url) => {
-                            firebase.createEvent().doc(params.id).update({
-                                site_du_partenaire: siteAdress,
-                                urlImagePartenaire: url
+                        storageSpeaker.getDownloadURL().then((url) => {
+                            firebase.createSpeaker().add({
+                                id_evenement: eventId,
+                                nom_intervenant: speakerName,
+                                urlImageIntervenant: url
                             })
-                       }).then(() => alert("partenaire ajouté")).catch(error => alert(error))
+                       }).then(() => alert("Intervenant ajouté")).catch(error => alert(error))
                     }
-                )*/
+                )
     }    
 
 

@@ -39,11 +39,11 @@ const  Events = () => {
     const  actionFormatter = cell => {
         return (
             <span>
-                <Link type="button" to={`/Events/${cell}`} rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                    <i class="material-icons">info</i>
+                <Link type="button" to={`/Events/${cell}`} rel="tooltip" title="Edit Task" >
+                    <i class="fa fa-plus"></i>
                 </Link>
-                <button type="button"  onClick={() => onDelete(cell)} rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                    <i class="material-icons">close</i>
+                <button type="button"  onClick={() => onDelete(cell)} rel="tooltip" title="Remove">
+                    <i class="fa fa-trash-o"></i>
                 </button>
             
             </span>

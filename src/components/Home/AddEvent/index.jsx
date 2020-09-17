@@ -73,9 +73,10 @@ const AddEvent = (props) => {
                 date: eventData.date,
                 ville: eventData.ville,
                 quartier: eventData.quartier,
-                urlImage: urlsImage
+                urlImage: urlsImage,
+                status: "0"
             })
-            alert("Votre évènement a été créé")
+            alert("Votre évènement a été créé, vous devez aller dans la liste des évènements puis dans les détails pour pouvoir configurer un évènement")
             props.history.push('/Events')
         })
         .catch(error => {
