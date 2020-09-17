@@ -3,12 +3,23 @@ import { FirebaseContext } from '../../Firebase'
 import { Link} from 'react-router-dom'
 import Partenaire from '../AddPartenaire';
 import Intervenant from '../AddIntervenant';
+import { Modal, Button } from 'react-bootstrap';
+import ModalIntervenant from '../Modal';
 
 const EventDetail = ({ match }) => {
 
     const firebase = useContext(FirebaseContext)
 
     const [dataEvent, setDataEvent] = useState([])
+   
+    const [show, setShow] = useState(false);
+    const [showi, setShowi] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const handleClosei = () => setShowi(false);
+    const handleShowi = () => setShowi(true);
 
     const params = match.params
 
@@ -28,6 +39,7 @@ const EventDetail = ({ match }) => {
 
 
     return (
+         <>
         <div class="page-wrapper"> 
             <div className="container-fluid">
                 <div class="row page-titles">
@@ -86,14 +98,14 @@ const EventDetail = ({ match }) => {
                                             <button class="btn btn-secondary"><i class="fa fa-navicon m-r-10" aria-hidden="true"></i> Liste des réservations</button>
                                         </div>
                                         <div class="col-3">
-                                            <button class="btn btn-secondary"><i class="fa fa fa-handshake-o m-r-10" aria-hidden="true"></i> Liste des partenaires</button>
+                                                <button class="btn btn-secondary" onClick={handleShow}><i class="fa fa fa-handshake-o m-r-10" aria-hidden="true"></i> Liste des partenaires</button>
                                         </div>
                                         <div class="col-3">
                                             <button class="btn btn-secondary"><i class="fa fa-comment m-r-10" aria-hidden="true"></i> Liste des commentaires</button>
                                         </div>
                                         
                                         <div class="col-3">
-                                            <button class="btn btn-secondary"><i class="fa fa-users  m-r-10" aria-hidden="true"></i> Liste des intervenants</button>
+                                                <button class="btn btn-secondary" onClick={handleShowi}><i class="fa fa-users  m-r-10" aria-hidden="true"></i> Liste des intervenants</button>
                                         </div>
                                         <div class="col-2">
                                            
@@ -126,7 +138,49 @@ const EventDetail = ({ match }) => {
            <div className="col-md-2"></div>            
          </div>
         </div>
-         </div> 
+            </div> 
+
+
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title><i class="fa fa fa-handshake-o m-r-10" aria-hidden="true"></i>Liste des partenaires</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    I will not close if you click outside me. Don't even try to press
+                    escape key.
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close</Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal
+                show={showi}
+                onHide={handleClosei}
+                backdrop="static"
+                keyboard={false}
+                size="lg"
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title><i class="fa fa-users  m-r-10" aria-hidden="true"></i>Liste des intervenants</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <Fragment>
+                        <ModalIntervenant id={params.id}></ModalIntervenant>
+                    </Fragment>  
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClosei}>
+                        Close</Button>
+                </Modal.Footer>
+            </Modal>
+    </>
      );
 }
  
