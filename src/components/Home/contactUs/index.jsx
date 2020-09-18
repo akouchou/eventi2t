@@ -29,7 +29,7 @@ handleSubmit(e) {
       'user_qsCaizYblaLOa904GGYVm'
      ).then(res => {
        console.log('Votre mail a bien été envoyé')
-     }).catch(err => console.error('Probmème reconctré. Veuillez reesayer s\'il-vous-plaît', err))
+     }).catch(err => console.error('Probmème reconctré. Veuillez reesayer s\'li', err))
      this.resetForm()
  }
 resetForm() {

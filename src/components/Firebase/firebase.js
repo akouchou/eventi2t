@@ -22,7 +22,6 @@ class Firebase {
         this.db = app.firestore()
         this.dbst = app.storage() 
     }
-<<<<<<< HEAD
     //inscription utilisateur
     signupUser = (email, password) =>
         this.auth.createUserWithEmailAndPassword(email, password);
@@ -48,9 +47,7 @@ class Firebase {
     
     sendPhoto =(image) => this.dbst.ref().child(`images_partenaire/${image.name}`) 
 
-=======
   
->>>>>>> df7c3e70441fc46462b1b94e88b100d6cd98c1fa
     selectEvent = () => this.db.collection('evenements')
 
     detailEvent = () => this.db.collection('evenements')

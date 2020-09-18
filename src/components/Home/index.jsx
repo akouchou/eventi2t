@@ -3,15 +3,12 @@ import React, {Fragment, useContext, useState, useEffect} from 'react';
 import Carousel from './carousel/index'
 import Contact from './contact/index'
 import Videos from './video/index';
-<<<<<<< HEAD
-import ContactUs from './contactUs/index'
-=======
+//import ContactUs from './contactUs/index'
 import {Card} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 
 import { FirebaseContext } from '../Firebase'
 
->>>>>>> df7c3e70441fc46462b1b94e88b100d6cd98c1fa
 
 const Home = () => {
 
@@ -103,7 +100,6 @@ const Home = () => {
                     </div>
                 </div>
            <Contact />
-           <ContactUs />
 
        </Fragment>
     )
