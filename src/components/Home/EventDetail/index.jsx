@@ -7,6 +7,7 @@ import { Modal, Button } from 'react-bootstrap';
 import ModalIntervenant from '../ModalIntervenant';
 import ModalPartenaire from '../ModalPartenaire';
 import ModalReservation from '../ModalReservation';
+import ModalProgramme from '../ModalProgramme';
 import { useHistory } from 'react-router-dom';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -28,11 +29,11 @@ const EventDetail = ({ match }, props) => {
     const [etat, setEtat] = useState('')
 
     const [dataEvent, setDataEvent] = useState([])
-    const [tasks, setTasks] = useState([])
 
     const [show, setShow] = useState(false);
     const [showi, setShowi] = useState(false);
     const [showr, setShowr] = useState(false);
+    const [showpr, setShowpr] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -42,6 +43,9 @@ const EventDetail = ({ match }, props) => {
 
     const handleCloser = () => setShowr(false);
     const handleShowr = () => setShowr(true);
+
+    const handleClosePr = () => setShowpr(false);
+    const handleShowPr = () => setShowpr(true);
 
     const params = match.params
 
@@ -149,6 +153,12 @@ const EventDetail = ({ match }, props) => {
                     doc.ref.delete();
                 });
             });
+            //suppriession des programmes
+            firebase.deleteProgrammeEvent(id).get().then(function (querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    doc.ref.delete();
+                });
+            });
             history.push("/Events");
         })
         // console.log(id);
@@ -213,9 +223,15 @@ const EventDetail = ({ match }, props) => {
                                 : <button class="btn btn-danger ml-2" onClick={() => changeStatus('4')}>
                                     <i class="fa fa-power-off m-r-10" aria-hidden="true"></i>Archiver l'Evenement</button>
                             }
-                                <button class="btn btn-danger ml-2" onClick={handleClickOpen} >
+                            
+                                <button class="btn btn-primary ml-5" onClick={handleShowPr} >
+                            <i class="fa fa-plus m-r-10" aria-hidden="true"></i>Programme</button>
+
+                            <button class="btn btn-danger ml-5" onClick={handleClickOpen} >
                             <i class="fa fa-trash-o m-r-10" aria-hidden="true"></i></button>
-     
+
+                           
+
                         </div>
                         <div className="row">
                                 <img src={spell.urlImage[0] != null || '' ? spell.urlImage[0] : "../assets/images/logo.jpg" } style={{ width: "200px", height: "100px" }} className="rounded mx-auto d-block" alt="..." />
@@ -301,10 +317,11 @@ const EventDetail = ({ match }, props) => {
                 aria-labelledby="alert-dialog-slide-title"
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle id="alert-dialog-slide-title">{"Confirmation"}</DialogTitle>
+                <DialogTitle id="alert-dialog-slide-title"><h2 class="fa fa-trash-o m-r-10" aria-hidden="true"></h2> 
+                {"Delete"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        <h2 class="fa fa-trash-o m-r-10" aria-hidden="true"></h2> Êtes-vous sûr de bien vouloir supprimer cet élément?.
+                        Êtes-vous sûr de bien vouloir supprimer cet élément?.
           </DialogContentText>
                 </DialogContent>
                 <DialogActions>
@@ -356,6 +373,28 @@ const EventDetail = ({ match }, props) => {
                         Close</Button>
                 </Modal.Footer>
             </Modal>
+
+            <Modal
+                show={showpr}
+                onHide={handleClosePr}
+                backdrop="static"
+                keyboard={false}
+                size="lg"
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title><i class="fa fa fa-plus m-r-10" aria-hidden="true"></i>Programme</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+
+                    <ModalProgramme id={params.id}></ModalProgramme>
+
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClosePr}>
+                        Close</Button>
+                </Modal.Footer>
+            </Modal>
+
 
             <Modal
                 show={showi}

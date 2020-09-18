@@ -77,7 +77,12 @@ class Firebase {
     changeStatus = (status) => this.db.collection('evenements').doc(status)
 
     
-
+    /**Programme */
+    createProgramme = () => this.db.collection('programme')
+    listProgramme = (id) => this.db.collection('programme').where("id_evenement", "==", id)
+    deleteProgrammeEvent = (id) => this.db.collection('programme').where("id_evenement", "==", id)
+    deleteProgramme = (id) => this.db.collection('programme').doc(id).delete();
+    /**Fin */
 
 }
 

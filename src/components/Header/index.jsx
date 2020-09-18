@@ -23,19 +23,16 @@ const Header = () => {
                 <nav className="navbar top-navbar  navbar-toggleable-sm navbar-light" > 
      
                     <div className="navbar-header" style={{ position: "fixed" }}>
-                        <a className="navbar-brand" href="/">
+                        <Link className="navbar-brand" to="/">
                           
-                        <b>
+                            <b>
                              
-                            <img src="assets/images/logo-icon.png" alt="homepage" className="dark-logo" />
+                                <img src="../assets/images/logo.jpg" style={{ width: "200px", height: "90px" }} alt="homepage" className="dark-logo mt-5" />
 
                             </b>
                            
-                        <span>
-                               
-                            <img src="assets/images/logo-text.png" alt="homepage" className="dark-logo" />
-                            </span>
-                        </a>
+                      
+                        </Link>
                     </div>
            
                 <div className="navbar-collapse" >
