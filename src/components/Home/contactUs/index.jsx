@@ -22,12 +22,14 @@ handleSubmit(e) {
       message: message,
      }
 
-     emailjs.send(
+     window.emailjs.send(
         "service_u5w8aak",
         "template_nt9qv2k",
        templateParams,
       'user_qsCaizYblaLOa904GGYVm'
-     )
+     ).then(res => {
+       console.log('Votre mail a bien été envoyé')
+     }).catch(err => console.error('Probmème reconctré. Veuillez reesayer s\'il-vous-plaît', err))
      this.resetForm()
  }
 resetForm() {

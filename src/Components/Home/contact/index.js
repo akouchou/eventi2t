@@ -26,7 +26,10 @@ class Contact extends Component {
             "template_nt9qv2k",
            templateParams,
           'user_qsCaizYblaLOa904GGYVm'
-         )
+         ).then(res => {
+            console.log('Votre mail a bien été envoyé')
+          }).catch(err => console.error('Probmème reconctré. Veuillez reesayer s\'il-vous-plaît', err))
+          this.resetForm()
          this.resetForm()
      }
     resetForm() {
