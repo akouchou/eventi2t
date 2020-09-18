@@ -1,7 +1,11 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom'
 
-function Carousel() {
+const  Carousel = ({ data, loading }) => {
+
+   
+
+
   return (
     <Fragment>
           <section id="hero">
@@ -13,37 +17,50 @@ function Carousel() {
                       <div className="carousel-inner" role="listbox">
 
 
-                          <div className="carousel-item active" style={{ backgroundImage: 'url(assets/img/slide/slide-1.jpg)' }}>
-                              <div className="carousel-container">
-                                  <div className="carousel-content">
-                                      <h2 className="animate__animated animate__fadeInDown">Welcome to <span>I2TEvent</span></h2>
-                                      <p className="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                                      <a href="#about" className="btn-get-started scrollto animate__animated animate__fadeInUp">Read More</a>
-                                  </div>
-                              </div>
-                          </div>
-
-
-                          <div className="carousel-item" style={{ backgroundImage: 'url(assets/img/slide/slide-2.jpg)' }}>
-                              <div className="carousel-container">
-                                  <div className="carousel-content">
-                                      <h2 className="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
-                                      <p className="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                                      <Link to="/event" className="btn-get-started scrollto animate__animated animate__fadeInUp">Read More</Link>
-                                  </div>
-                              </div>
-                          </div>
-
-
-                          <div className="carousel-item" style={{ backgroundImage: 'url(assets/img/slide/slide-3.jpg)' }}>
-                              <div className="carousel-container">
-                                  <div className="carousel-content">
-                                      <h2 className="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
-                                      <p className="animate__animated animate__adeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                                      <a href="#about" className="btn-get-started scrollto animate__animated animate__fadeInUp">Read More</a>
-                                  </div>
-                              </div>
-                          </div>
+                          {
+                              loading ? ( data.map(event => (
+                                  event.status == 1 && (
+                                    <Fragment>
+                                        <div className="carousel-item active" style={{ backgroundImage: `url(${event.urlImage[0]})` }}>
+                                    <div className="carousel-container">
+                                        <div className="carousel-content">
+                                            <h2 className="animate__animated animate__fadeInDown">Welcome to <span>I2TEvent</span></h2>
+                                            <p className="animate__animated animate__fadeInUp"> {event.titre} </p>
+                                            <Link to={`/event/${event.id}`} className="btn-get-started scrollto animate__animated animate__fadeInUp">Read More</Link>
+                                        </div>
+                                    </div>
+                                </div>
+      
+      
+                                <div className="carousel-item" style={{ backgroundImage: `url(${event.urlImage[1]})` }}>
+                                    <div className="carousel-container">
+                                        <div className="carousel-content">
+                                            <h2 className="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
+                                            <p className="animate__animated animate__fadeInUp">{event.titre}</p>
+                                            <Link to={`/event/${event.id}`} className="btn-get-started scrollto animate__animated animate__fadeInUp">Read More</Link>
+                                        </div>
+                                    </div>
+                                </div>
+      
+      
+                                <div className="carousel-item" style={{ backgroundImage: `url(${event.urlImage[2]})` }}>
+                                    <div className="carousel-container">
+                                        <div className="carousel-content">
+                                            <h2 className="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
+                                            <p className="animate__animated animate__adeInUp">{event.titre}</p>
+                                            <Link to={`/event/${event.id}`} className="btn-get-started scrollto animate__animated animate__fadeInUp">Read More</Link>
+                                        </div>
+                                    </div>
+                                </div>
+                                    </Fragment>
+                                  )
+                              ))
+                              ): (
+                                <div className="spinner-border text-center" role="status">
+                                  <span className="sr-only">Loading...</span>
+                                </div>
+                              )
+                          }
 
                       </div>
 

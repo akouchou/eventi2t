@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import App from './Components/App/App'
 import Firebase, { FirebaseContext } from './Components/Firebase'
+import MapCard from './Components/Event/CardMaps';
 
 
 ReactDOM.render(
@@ -11,6 +12,7 @@ ReactDOM.render(
        <App />
     </FirebaseContext.Provider>
   </React.StrictMode>,
+ 
   document.getElementById('root')
 );
 

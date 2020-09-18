@@ -3,6 +3,8 @@ import moment from "moment";
 
 
   class Countdown  extends React.Component {
+
+    
     
     state = {
       days: undefined,
@@ -35,6 +37,8 @@ import moment from "moment";
     render() {
 
       const { days, hours, minutes, seconds } = this.state;
+
+
 
       // Mapping the date values to radius values
       const daysRadius = mapNumber(days, 30, 0, 0, 360);

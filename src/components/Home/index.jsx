@@ -27,11 +27,10 @@ const Home = () => {
         fetchDataEvent()
     }, []);
 
-  console.log(data);
 
     return(
        <Fragment>
-           <Carousel />
+           <Carousel data={data} loading={loading} />
            <Videos/>
                 <div className="justify-content-space-between mt-3">
                     <div style={{ display: "block", textAlign: "center"}}>

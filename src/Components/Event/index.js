@@ -2,6 +2,10 @@ import React, { Component, Fragment, useContext, useState, useEffect } from 'rea
 import { FirebaseContext } from '../Firebase'
 import Countdown from '../Home/countdown/countdown.jsx'
 import {Button, Modal, Form} from 'react-bootstrap';
+import Addparticip from './AddParticip';
+import { Link } from 'react-router-dom';
+import Partenaire from './Partenaires';
+import mapCard from './CardMaps';
 
 
 const Event = ({ match }) =>  {
@@ -20,6 +24,7 @@ const Event = ({ match }) =>  {
         
         const firebase = useContext(FirebaseContext)
         const [dataEvent, setDataEvent] = useState([])
+        const [loading, setLoading] = useState(false)
 
         const id = match.params.id
 
@@ -29,6 +34,7 @@ const Event = ({ match }) =>  {
                 .then(doc => {
                     dataEvent.push(doc.data())
                     dataEvent.forEach(x => setDataEvent(x))
+                    setLoading(true)
                 })
             }
     
@@ -40,18 +46,18 @@ const Event = ({ match }) =>  {
         return(  
             <Fragment>
                 <section id="hero">
-                    <div className="hero-container" style={{ backgroundImage: 'url(${dataEvent.urlImage})' }}>
+                    <div className="hero-container">
                     <div id="heroCarousel" className="carousel slide carousel-fade" data-ride="carousel">
 
 
                         <div className="carousel-inner" role="listbox">
 
                         
-                        <div className="carousel-item active">
+                        <div className="carousel-item active" style={{ backgroundImage: `url(${dataEvent.urlImage})` }} >
                             <div className="carousel-container">
                             <div className="carousel-content">
                                 <h2 className="animate__animated animate__fadeInDown">Bienvenue  <span>{dataEvent.titre}</span></h2>
-                                <p className="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                                <p className="animate__animated animate__fadeInUp">{dataEvent.description}</p>
                                 <Button className="animate__animated animate__fadeInUp" variant="danger" onClick={handleShow} >
                                             Réservation
                                 </Button>
@@ -73,40 +79,32 @@ const Event = ({ match }) =>  {
                 </Modal.Header>
                 <Modal.Body>
 
-                    <Form>
-                        <Form.Group controlId="formBasicEmail">
-                            <label>Email address</label>
-                            <input className="form-control" type="email" placeholder="i2tgroup@gmail.com" />
-                            <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                            </Form.Text> 
-                        </Form.Group> 
-                    </Form>
+                        <Addparticip id={id} />
 
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="danger" onClick={handleClose}>
-                        Réserver
-                    </Button>
-                </Modal.Footer>
+               
             </Modal>
 
-                <Countdown timeTillDate="09 30 2020, 6:00 am" timeFormat="MM DD YYYY, h:mm a" />
+                {
+                    loading ? <Countdown timeTillDate={ dataEvent.date } timeFormat="MM DD YYYY, h:mm a" /> : (
+                        <div className="spinner-border text-center" style={{float: "center"}} role="status">
+                          <span className="sr-only">Loading...</span>
+                        </div>
+                    )
 
+                }
                 
                 <section id="about" className="about section-bg">
                     <div className="container">
 
                         <div className="row content">
                         <div className="col-lg-6">
-                            <h2>Lieu Evenement </h2>
-                            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assum perenda sruen jonee trave</h3>
+                            <h3>Lieu Evenement: { dataEvent.ville } </h3>
+                            <mapCard/>
                         </div>
                         <div className="col-lg-6 pt-4 pt-lg-0">
                             <p>
-                            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                            culpa qui officia deserunt mollit anim id est laborum
+                            { dataEvent.description }
                             </p>
                             <ul>
                             <li><i className="ri-check-double-line"></i> {dataEvent.ville}</li>
@@ -136,7 +134,7 @@ const Event = ({ match }) =>  {
                         <div className="row">
                             <div className="col-md-6 mt-4">
                                 <div className="member d-flex align-items-start">
-                                    <div className="pic"><img src="assets/img/team/team-3.jpg" className="img-fluid" alt=""/></div>
+                                    <div className="pic"><img src="../assets/img/team/team-3.jpg" className="img-fluid" alt=""/></div>
                                     <div className="member-info">
                                     <h4>William Anderson</h4>
                                     <span>CTO</span>
@@ -153,7 +151,7 @@ const Event = ({ match }) =>  {
 
                             <div className="col-md-6 mt-4">
                                 <div className="member d-flex align-items-start">
-                                    <div className="pic"><img src="assets/img/team/team-4.jpg" className="img-fluid" alt=""/></div>
+                                    <div className="pic"><img src="../assets/img/team/team-4.jpg" className="img-fluid" alt=""/></div>
                                     <div className="member-info">
                                     <h4>Amanda Jepson</h4>
                                     <span>Accountant</span>
@@ -172,33 +170,9 @@ const Event = ({ match }) =>  {
                     </div>  
                 </section>
 
-                <section id="services" className="services section-bg">
-                    <div className="container">
-
-                        <div className="section-title">
-                        <span style={{opacity: 0.1, color: "black"}} >Partenaires</span>
-                        <h2>Partenaires</h2>
-
-                        </div>
-
-                        <div className="row">
-                            <div className="col-md-6">
-                                <div className="icon-box">
-                                <i className="icofont-computer"></i>
-                                <h4><a href="#">Lorem Ipsum</a></h4>
-                                </div>
-                            </div>
-                            <div className="col-md-6 mt-4 mt-md-0">
-                                <div className="icon-box">
-                                <i className="icofont-chart-bar-graph"></i>
-                                <h4><a href="#">Dolor Sitema</a></h4>
-                                </div>
-                            </div>
-                    
-                        </div>
-
-                    </div>
-               </section>
+                <section id="services" className="services section-bg" >
+                    <Partenaire id={id}/>
+                </section>
 
                  
             </Fragment>
