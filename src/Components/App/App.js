@@ -5,6 +5,7 @@ import Home from '../Home/index'
 import Event from '../Event/index'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom' 
 import Footer from '../Home/footer';
+import mapCard from '../Event/CardMaps';
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
       <Header/>
       
       <Switch>
-      <Route path="/event" component={Event} />
-      <Route path="/" component={Home} />
+      <Route path="/event/:id" component={Event} />
+      <Route exact path="/" component={Home} />
+      <Route path="/map/:id" component={mapCard} />
         
       </Switch>
       

@@ -5,6 +5,7 @@ import {Button, Modal, Form} from 'react-bootstrap';
 import Addparticip from './AddParticip';
 import { Link } from 'react-router-dom';
 import Partenaire from './Partenaires';
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 import mapCard from './CardMaps';
 
 
@@ -83,7 +84,7 @@ const Event = ({ match }) =>  {
 
                 </Modal.Body>
                
-            </Modal>
+                </Modal>
 
                 {
                     loading ? <Countdown timeTillDate={ dataEvent.date } timeFormat="MM DD YYYY, h:mm a" /> : (
@@ -100,7 +101,7 @@ const Event = ({ match }) =>  {
                         <div className="row content">
                         <div className="col-lg-6">
                             <h3>Lieu Evenement: { dataEvent.ville } </h3>
-                            <mapCard/>
+                            <Link className="btn btn-primary" to={`/map/${id}`}>visualiser</Link>
                         </div>
                         <div className="col-lg-6 pt-4 pt-lg-0">
                             <p>
