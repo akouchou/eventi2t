@@ -1,27 +1,44 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, useContext, useState, useEffect } from 'react';
+import { FirebaseContext } from '../Firebase'
 import Countdown from '../Home/countdown/countdown.jsx'
 import {Button, Modal, Form} from 'react-bootstrap';
+import Addparticip from './AddParticip';
+import { Link } from 'react-router-dom';
+import Partenaire from './Partenaires';
 
 
-class Event extends Component {
+const Event = ({ match }) =>  {
 
-    state = {
-        show: false
-    }
 
-    render() {
 
+    const [show, setShow] = useState(false)
+  
         const handleShow = () => {
-            this.setState({
-                show:true
-            })
+           setShow(true)
         }
 
         const handleClose = () => {
-            this.setState({
-                show:false
-            })
+           setShow(false)
         }
+        
+        const firebase = useContext(FirebaseContext)
+        const [dataEvent, setDataEvent] = useState([])
+
+        const id = match.params.id
+
+        useEffect(() => {
+            const fetchDataEvent = async () => {
+                await firebase.detailEvent().doc(id).get()
+                .then(doc => {
+                    dataEvent.push(doc.data())
+                    dataEvent.forEach(x => setDataEvent(x))
+                })
+            }
+    
+            fetchDataEvent()
+        }, []);
+
+        console.log(dataEvent.titre);
 
         return(  
             <Fragment>
@@ -33,10 +50,10 @@ class Event extends Component {
                         <div className="carousel-inner" role="listbox">
 
                         
-                        <div className="carousel-item active" style={{ backgroundImage: 'url(assets/img/slide/slide-1.jpg)' }}>
+                        <div className="carousel-item active">
                             <div className="carousel-container">
                             <div className="carousel-content">
-                                <h2 className="animate__animated animate__fadeInDown">Bienvenue  <span>Titre Evenement</span></h2>
+                                <h2 className="animate__animated animate__fadeInDown">Bienvenue  <span>{dataEvent.titre}</span></h2>
                                 <p className="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
                                 <Button className="animate__animated animate__fadeInUp" variant="danger" onClick={handleShow} >
                                             Réservation
@@ -53,31 +70,19 @@ class Event extends Component {
                     </div>
                 </section>
 
-                <Modal show={this.state.show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" centered>
+                <Modal show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header closeButton>
                     <Modal.Title> <p style={{textAlign:"center"}}>RESERVER VOTRE PLACE</p></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
-                    <Form>
-                        <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="i2tgroup@gmail.com" />
-                            <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                            </Form.Text>
-                        </Form.Group> 
-                    </Form>
+                        <Addparticip id={id} />
 
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="danger" onClick={handleClose}>
-                        Réserver
-                    </Button>
-                </Modal.Footer>
+               
             </Modal>
 
-                <Countdown timeTillDate="10 26 2020, 6:00 am" timeFormat="MM DD YYYY, h:mm a" />
+                <Countdown timeTillDate="09 30 2020, 6:00 am" timeFormat="MM DD YYYY, h:mm a" />
 
                 
                 <section id="about" className="about section-bg">
@@ -85,8 +90,8 @@ class Event extends Component {
 
                         <div className="row content">
                         <div className="col-lg-6">
-                            <h2>Lieu Evenement </h2>
-                            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assum perenda sruen jonee trave</h3>
+                            <h2>Lieu Evenement: { dataEvent.ville } </h2>
+                            <h3> { dataEvent.description } </h3>
                         </div>
                         <div className="col-lg-6 pt-4 pt-lg-0">
                             <p>
@@ -95,8 +100,8 @@ class Event extends Component {
                             culpa qui officia deserunt mollit anim id est laborum
                             </p>
                             <ul>
-                            <li><i className="ri-check-double-line"></i> Ville</li>
-                            <li><i className="ri-check-double-line"></i> Quartier</li>
+                            <li><i className="ri-check-double-line"></i> {dataEvent.ville}</li>
+                            <li><i className="ri-check-double-line"></i> {dataEvent.quartier}</li>
                             <li><i className="ri-check-double-line"></i> Date</li>
                             <li><i className="ri-check-double-line"></i> Heure</li>
                             </ul>
@@ -122,7 +127,7 @@ class Event extends Component {
                         <div className="row">
                             <div className="col-md-6 mt-4">
                                 <div className="member d-flex align-items-start">
-                                    <div className="pic"><img src="assets/img/team/team-3.jpg" className="img-fluid" alt=""/></div>
+                                    <div className="pic"><img src="../assets/img/team/team-3.jpg" className="img-fluid" alt=""/></div>
                                     <div className="member-info">
                                     <h4>William Anderson</h4>
                                     <span>CTO</span>
@@ -139,7 +144,7 @@ class Event extends Component {
 
                             <div className="col-md-6 mt-4">
                                 <div className="member d-flex align-items-start">
-                                    <div className="pic"><img src="assets/img/team/team-4.jpg" className="img-fluid" alt=""/></div>
+                                    <div className="pic"><img src="../assets/img/team/team-4.jpg" className="img-fluid" alt=""/></div>
                                     <div className="member-info">
                                     <h4>Amanda Jepson</h4>
                                     <span>Accountant</span>
@@ -158,38 +163,13 @@ class Event extends Component {
                     </div>  
                 </section>
 
-                <section id="services" className="services section-bg">
-                    <div className="container">
-
-                        <div className="section-title">
-                        <span style={{opacity: 0.1, color: "black"}} >Partenaires</span>
-                        <h2>Partenaires</h2>
-
-                        </div>
-
-                        <div className="row">
-                            <div className="col-md-6">
-                                <div className="icon-box">
-                                <i className="icofont-computer"></i>
-                                <h4><a href="#">Lorem Ipsum</a></h4>
-                                </div>
-                            </div>
-                            <div className="col-md-6 mt-4 mt-md-0">
-                                <div className="icon-box">
-                                <i className="icofont-chart-bar-graph"></i>
-                                <h4><a href="#">Dolor Sitema</a></h4>
-                                </div>
-                            </div>
-                    
-                        </div>
-
-                    </div>
-               </section>
+                <section id="services" className="services section-bg" >
+                    <Partenaire id={id}/>
+                </section>
 
                  
             </Fragment>
         )
     }
-}
 
 export default Event

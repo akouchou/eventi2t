@@ -13,8 +13,8 @@ function App() {
       <Header/>
       
       <Switch>
-      <Route path="/event" component={Event} />
-      <Route path="/" component={Home} />
+      <Route path="/event/:id" component={Event} />
+      <Route exact path="/" component={Home} />
         
       </Switch>
       
