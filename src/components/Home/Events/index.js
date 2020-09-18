@@ -21,17 +21,35 @@ const  Events = () => {
                 setTasks(data.docs.map(doc => ({...doc.data(), id: doc.id })));
                 setLoading(true)
             })
-            
+           
         };
         fetchData()
-
+        
     }, []);
 
-    const  imageFormatter = cell => {
-        return (
-            <img src={cell} width="100px" height="100px" className=""  />
-           
-        );
+    const statusFormatter = cell => {
+
+        let result;
+
+        if (cell === '1') {
+            result = <i  className="btn btn-success" rel="tooltip" title="Remove">
+                Evènement en cours
+                </i>
+        } else if (cell === '2'){
+            result = <i  className="btn btn-warning" rel="tooltip" title="Remove">
+                Evènement a venir </i>
+        } else if (cell === '3') {
+            result = <i className="btn btn-danger" rel="tooltip" >
+                Evènement passé </i>
+        } else if (cell === '4') {
+            result = <i  className="btn btn-light" rel="tooltip" title="Remove">
+                <i class="fa  fa-file-zip-o m-r-10" aria-hidden="true"></i> Evènement archiver</i>
+        }
+        else{
+            result = <i  className="btn btn-secondary"  rel="tooltip" title="Remove">
+                Nouveau </i>
+        }
+        return result;
     }
 
 
@@ -39,30 +57,23 @@ const  Events = () => {
     const  actionFormatter = cell => {
         return (
             <span>
-                <Link type="button" to={`/Events/${cell}`} rel="tooltip" title="Edit Task" >
-                    <i class="fa fa-plus"></i>
+                <Link type="button" className="btn btn-info" to={`/Events/${cell}`} rel="tooltip" title="Edit Task" >
+                    <i class="fa  fa-cog"></i>
                 </Link>
-                <button type="button"  onClick={() => onDelete(cell)} rel="tooltip" title="Remove">
-                    <i class="fa fa-trash-o"></i>
-                </button>
-            
             </span>
         );
     }
 
     const columns = [
         { dataField: "titre", text: "Titre"},
-        { dataField: "description", text: "Description"},
+        { dataField: "status", text: "Status", formatter: statusFormatter},
         { dataField: "date", text: "Date"},
         { dataField: "ville", text: "Ville"},
         { dataField: "quartier", text: "Quartier"},
         { dataField: "id", text: "Actions", formatter: actionFormatter }
     ]
 
-    const onDelete = async (id) => {
-        await firebase.deleteEvent(id)
-         // console.log(id);
-     }
+
 
     return(
         <div class="page-wrapper">
@@ -79,13 +90,16 @@ const  Events = () => {
                 </div>
             <div class="col-lg-12 col-md-12 ">
                 <Link class="btn btn-primary" to="/admin" >
+                        <i class="fa fa-plus m-r-10" aria-hidden="true"></i>
                         Ajouter un Evenement
                 </Link>
                
-                <div class="card">
+                <div class="card mt-2">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title">Evenements </h4>
-                        <p class="card-category">I2T group</p>
+                        <h4 class="card-title">
+                            <i class="fa fa-plus m-r-10" aria-hidden="true"></i>
+                            Liste des évenements 
+                        </h4>
                     </div>
                     <div class="card-body table-responsive">
                         {loading ? (

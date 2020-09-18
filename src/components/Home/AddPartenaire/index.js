@@ -11,7 +11,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 const Partenaire = (props) =>{
 
     const eventId = props.eventId
-    //console.log(eventId);
+    console.log(eventId);
 
     const firebase = useContext(FirebaseContext)
         // ajout du partenaire a l'evenement 
@@ -55,7 +55,10 @@ const Partenaire = (props) =>{
                     })
                }).then(() => {
                    handleClose()
-               }).catch(error => alert(error))
+               }).catch(error => {
+                   handleClose()
+                   console.log(error);
+               })
             }
         )
     }    
