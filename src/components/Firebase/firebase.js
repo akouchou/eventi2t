@@ -40,18 +40,36 @@ class Firebase {
     sendImage = (image) => this.dbst.ref().child(`images_evenements/${image.name}`)
 
     createEvent = () => this.db.collection('evenements')
+    deleteEvent = (id) => this.db.collection('evenements').doc(id).delete();
 
 
+    /*Intervenants*/
     createSpeaker = () => this.db.collection('intervenants')
- 
+    listIntervenant = (idInt) => this.db.collection('intervenants').where("id_evenement", "==", idInt)
+    deleteIntervEvent = (idInt) => this.db.collection('intervenants').where("id_evenement", "==", idInt)
+    deleteIntervenant = (id) => this.db.collection('intervenants').doc(id).delete();
+    /**Fin */
 
+    /**Partenaire */
     createPartner =() => this.db.collection('partenaire')
+    listPartner = (idPart) => this.db.collection('partenaire').where("id_evenement", "==", idPart)
+    deletePartnerEvent = (idPart) => this.db.collection('partenaire').where("id_evenement", "==", idPart)
+    deletePartner = (id) => this.db.collection('partenaire').doc(id).delete();
+    /**Fib */
+
+    /**Reservation */
+    listReservation = (idReserv) => this.db.collection('reservations').where("id_evenement", "==", idReserv)
+    deleteReservEvent = (idReserv) => this.db.collection('reservations').where("id_evenement", "==", idReserv)
+    deleteReservation = (id) => this.db.collection('reservations').doc(id).delete();
+    /**Fin */
+
+
     sendPhoto = (image) => this.dbst.ref().child(`images_partenaire/${image.name}`) 
     sendPhotoSpeaker = (image) => this.dbst.ref().child(`images_intervenant/${image.name}`) 
 
     selectEvent = () => this.db.collection('evenements')
 
-    deleteEvent = (id) => this.db.collection('evenements').doc(id).delete();
+    
 
     
     detailEvent = (id) => this.db.collection('evenements').doc(id)
@@ -59,7 +77,12 @@ class Firebase {
     changeStatus = (status) => this.db.collection('evenements').doc(status)
 
     
-
+    /**Programme */
+    createProgramme = () => this.db.collection('programme')
+    listProgramme = (id) => this.db.collection('programme').where("id_evenement", "==", id)
+    deleteProgrammeEvent = (id) => this.db.collection('programme').where("id_evenement", "==", id)
+    deleteProgramme = (id) => this.db.collection('programme').doc(id).delete();
+    /**Fin */
 
 }
 

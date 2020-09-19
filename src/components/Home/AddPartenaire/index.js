@@ -11,7 +11,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 const Partenaire = (props) =>{
 
     const eventId = props.eventId
-    //console.log(eventId);
+    console.log(eventId);
 
     const firebase = useContext(FirebaseContext)
         // ajout du partenaire a l'evenement 
@@ -55,27 +55,29 @@ const Partenaire = (props) =>{
                     })
                }).then(() => {
                    handleClose()
-               }).catch(error => alert(error))
+               }).catch(error => {
+                   handleClose()
+                   console.log(error);
+               })
             }
         )
     }    
 
   return (
       <Fragment>
-
-          <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <div className="container-fluid">
                   <h3 className="text-center">Ajouter un partenaire a l'evenement: </h3>
                   <div class="form-group">
                       <label for="exampleInputName">entrer l'adresse du site du partenaire</label>
-                      <input onChange={handleInputChange} type="text" placeholder="http://www.exemple.com" class="form-control" id="exampleInputName" />
+                      <input onChange={handleInputChange} type="text" placeholder="http://www.exemple.com" class="form-control" id="exampleInputName" required/>
 
                   </div>
 
                   <div className="row form-group">
                       <label className="col-md-12" >Entrer le logo du partenaire</label>
                       <div className="col-md-12">
-                          <input onChange={handleImage} type="file" className="form-control form-control-line" name="" id="" />
+                          <input onChange={handleImage} type="file" className="form-control form-control-line" name="" id="" required/>
                       </div>
                   </div>
 

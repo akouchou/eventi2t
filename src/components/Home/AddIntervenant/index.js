@@ -12,7 +12,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 const Intervenant = (props) => {
 
     const eventId = props.eventId
-
+    console.log(eventId);
 
     const firebase = useContext(FirebaseContext)
     // ajout dun intervenant a l'evenement 
