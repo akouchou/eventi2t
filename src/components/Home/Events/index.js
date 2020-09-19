@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect} from 'react';
 import { FirebaseContext } from '../../Firebase'
 import { Link } from 'react-router-dom';
-import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import * as ReactBootStrap from "react-bootstrap";
+import BootstrapTable from "react-bootstrap-table-next"
 
 
 const  Events = () => {

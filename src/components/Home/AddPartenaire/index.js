@@ -1,9 +1,17 @@
 import React, { Fragment, useEffect, useContext, useState } from 'react';
 import { FirebaseContext } from '../../Firebase'
 import { Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
+const Partenaire = (props) =>{
 
-function Partenaire() {
+    const eventId = props.eventId
+    //console.log(eventId);
 
     const firebase = useContext(FirebaseContext)
         // ajout du partenaire a l'evenement 
@@ -11,6 +19,16 @@ function Partenaire() {
     const [siteAdress, setSiteAdress] = useState('')
 
     const [imagPartner , setImagPartner] = useState(null)
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const handleInputChange = e => {
         setSiteAdress(e.target.value)
@@ -22,20 +40,24 @@ function Partenaire() {
 
     const handleSubmit = async e => {
         e.preventDefault()
-/*
+
+        handleClickOpen()
         const storagePartner = await firebase.sendPhoto(imagPartner)
         storagePartner.put(imagPartner).on('state_changed', 
             snap => console.log('snap'), 
             error => console.log(error), 
             () => {
                 storagePartner.getDownloadURL().then((url) => {
-                    firebase.createEvent().doc(params.id).update({
+                    firebase.createPartner().add({
+                        id_evenement: eventId,
                         site_du_partenaire: siteAdress,
                         urlImagePartenaire: url
                     })
-               }).then(() => alert("partenaire ajouté")).catch(error => alert(error))
+               }).then(() => {
+                   handleClose()
+               }).catch(error => alert(error))
             }
-        )*/
+        )
     }    
 
   return (
@@ -63,7 +85,26 @@ function Partenaire() {
 
               </div>
           </form>
+          <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+          >
+              <DialogTitle id="alert-dialog-title">{"Patienter s'il vous plaît "}</DialogTitle>
+              <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                      <div className="mt-5">
+                          <svg className="circular" viewBox="25 25 50 50">
+                              <circle className="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+                          </svg>
+                      </div>
+                  </DialogContentText>
+              </DialogContent>
+              <DialogActions>
 
+              </DialogActions>
+          </Dialog>
       </Fragment>
   );
 }

@@ -45,6 +45,7 @@ class Firebase {
     createSpeaker = () => this.db.collection('intervenants')
  
 
+    createPartner =() => this.db.collection('partenaire')
     sendPhoto = (image) => this.dbst.ref().child(`images_partenaire/${image.name}`) 
     sendPhotoSpeaker = (image) => this.dbst.ref().child(`images_intervenant/${image.name}`) 
 
@@ -52,8 +53,11 @@ class Firebase {
 
     deleteEvent = (id) => this.db.collection('evenements').doc(id).delete();
 
-    detailEvent = () => this.db.collection('evenements')
-     
+    
+    detailEvent = (id) => this.db.collection('evenements').doc(id)
+    
+    changeStatus = (status) => this.db.collection('evenements').doc(status)
+
     
 
 
