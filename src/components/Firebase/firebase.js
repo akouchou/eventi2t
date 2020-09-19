@@ -38,6 +38,7 @@ class Firebase {
 
 
     sendImage = (image) => this.dbst.ref().child(`images_evenements/${image.name}`)
+    sendVideo = (video) => this.dbst.ref().child(`video_evenements/${video.name}`)
 
     createEvent = () => this.db.collection('evenements')
     deleteEvent = (id) => this.db.collection('evenements').doc(id).delete();
