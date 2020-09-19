@@ -68,7 +68,7 @@ class Firebase {
     sendPhoto = (image) => this.dbst.ref().child(`images_partenaire/${image.name}`) 
     sendPhotoSpeaker = (image) => this.dbst.ref().child(`images_intervenant/${image.name}`) 
 
-    selectEvent = () => this.db.collection('evenements')
+    selectEvent = () => this.db.collection('evenements').orderBy('dateCreation')
 
     
 

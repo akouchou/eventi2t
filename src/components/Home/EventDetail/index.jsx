@@ -185,12 +185,13 @@ const EventDetail = ({ match }, props) => {
         <div className="row">
                 <div className="col-md-2"></div>
                 <div className="col-md-12">
-
+            {dataEvent.map((spell) => ( 
+                <Fragment>
                 <div className="col-lg-12 col-xlg-9 col-md-7">
                 <div className="card" >
                     <img src="" alt="" className="card-img-top" />
                     <div className="card-body">
-                    {dataEvent.map((spell) => ( 
+                  
                         
                         <Fragment>
                             <div class="alert alert-secondary" role="alert">
@@ -240,7 +241,7 @@ const EventDetail = ({ match }, props) => {
                         </div>
                         <div class="form-row mt-5">
                             <div class="col-2">
-                                    <label for="">Date :<h5>{spell.nom_article}</h5></label>
+                                    <label for="">Date :<h5>{spell.date}</h5></label>
                             </div>
                             <div class="col-3">
                                     <label for="">Ville :<h5>{spell.ville}</h5></label>
@@ -254,10 +255,25 @@ const EventDetail = ({ match }, props) => {
                             </div>
                         </div>
                         </Fragment>
-                        ))}
+                        
                     </div>
                 </div>
             </div>
+                            <div className="col-lg-12 col-xlg-9 col-md-7">
+                                <div className="card" >
+                                    <img src="" alt="" className="card-img-top" />
+                                    <div className="card-body">
+                                        <div className="justify-content-space-between mt-3 ">
+                                            <div style={{ display: "block", textAlign: "center" }}>
+                                            <video src={spell.video != null || '' ? spell.video : "#"} height="300" width="1000px" controls="controls" className="container" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                    </Fragment>
+                        ))}
                         <div className="col-lg-12 col-xlg-9 col-md-7">
                             <div className="card" >
                                 <img src="" alt="" className="card-img-top" />
@@ -303,7 +319,7 @@ const EventDetail = ({ match }, props) => {
                                 </div>
                             </div>
             </div>
-
+                           
             </div>
            <div className="col-md-2"></div>            
          </div>
