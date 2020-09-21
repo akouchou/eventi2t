@@ -11,6 +11,7 @@
     "bootstrap": "^4.5.2",
     "emailjs-com": "^2.6.3",
     "firebase": "^7.19.1",
+    "leaflet": "^1.7.1",
     "mdbreact": "^4.27.0",
     "rbx": "^2.2.0",
     "react": "^16.13.1",

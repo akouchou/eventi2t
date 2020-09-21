@@ -5,6 +5,8 @@ import {Button, Modal, Form} from 'react-bootstrap';
 import Addparticip from './AddParticip';
 import { Link } from 'react-router-dom';
 import Partenaire from './Partenaires';
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
+import mapCard from './CardMaps';
 
 
 const Event = ({ match }) =>  {
@@ -23,6 +25,7 @@ const Event = ({ match }) =>  {
         
         const firebase = useContext(FirebaseContext)
         const [dataEvent, setDataEvent] = useState([])
+        const [loading, setLoading] = useState(false)
 
         const id = match.params.id
 
@@ -32,6 +35,7 @@ const Event = ({ match }) =>  {
                 .then(doc => {
                     dataEvent.push(doc.data())
                     dataEvent.forEach(x => setDataEvent(x))
+                    setLoading(true)
                 })
             }
     
@@ -48,11 +52,11 @@ const Event = ({ match }) =>  {
                         <div className="carousel-inner" role="listbox">
 
                         
-                        <div className="carousel-item active">
+                        <div className="carousel-item active" style={{ backgroundImage: `url(${dataEvent.urlImage})` }} >
                             <div className="carousel-container">
                             <div className="carousel-content">
                                 <h2 className="animate__animated animate__fadeInDown">Bienvenue  <span>{dataEvent.titre}</span></h2>
-                                <p className="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                                <p className="animate__animated animate__fadeInUp">{dataEvent.description}</p>
                                 <Button className="animate__animated animate__fadeInUp" variant="danger" onClick={handleShow} >
                                             Réservation
                                 </Button>
@@ -78,24 +82,31 @@ const Event = ({ match }) =>  {
 
                 </Modal.Body>
                
-            </Modal>
+                </Modal>
 
-                <Countdown timeTillDate="09-30-2020, 6:00 am" timeFormat="MM DD YYYY, h:mm a" />
+                <Countdown timeTillDate="09-30-2020, 6:00 am" timeFormat="MM-DD-YYYY, h:mm a" />
 
+                {
+                    loading ? <Countdown timeTillDate={ dataEvent.date } timeFormat="MM DD YYYY, h:mm a" /> : (
+                        <div className="spinner-border text-center" style={{float: "center"}} role="status">
+                          <span className="sr-only">Loading...</span>
+                        </div>
+                    )
+
+                }
                 
                 <section id="about" className="about section-bg">
                     <div className="container">
 
                         <div className="row content">
                         <div className="col-lg-6">
-                            <h2>Lieu Evenement: { dataEvent.ville } </h2>
                             <h3> { dataEvent.description } </h3>
+                            <h3>Lieu Evenement: { dataEvent.ville } </h3>
+                            <Link className="btn btn-primary" to={`/map/${id}`}>visualiser</Link>
                         </div>
                         <div className="col-lg-6 pt-4 pt-lg-0">
                             <p>
-                            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                            culpa qui officia deserunt mollit anim id est laborum
+                            { dataEvent.description }
                             </p>
                             <ul>
                             <li><i className="ri-check-double-line"></i> {dataEvent.ville}</li>

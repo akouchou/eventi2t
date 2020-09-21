@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 .leaflet-container {
     height: 400px;
     width: 100%;
   }
+=======
+.leaflet-container {
+    height: 500px;
+    width: 100%;
+  }
+
+  #mapid { height: 300px; }
+>>>>>>> 6ae808da7c6dbff53eba090af76f870c1957375b

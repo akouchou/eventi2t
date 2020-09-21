@@ -4,6 +4,7 @@ import * as serviceWorker from './serviceWorker';
 import App from './components/App/App'
 //import Firebase, { FirebaseContext } from './Components/Firebase'
 import Firebase, {FirebaseContext} from './components/Firebase'
+import MapCard from './Components/Event/CardMaps';
 
 
 ReactDOM.render(
@@ -12,6 +13,7 @@ ReactDOM.render(
        <App />
     </FirebaseContext.Provider>
   </React.StrictMode>,
+ 
   document.getElementById('root')
 );
 
