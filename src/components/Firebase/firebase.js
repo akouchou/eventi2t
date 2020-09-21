@@ -31,6 +31,8 @@ class Firebase {
 
     selectPartenaire = id => this.db.collection('partenaire') .where("id_evenement", "==", id)
 
+    selectIntervenant = id => this.db.collection('intervenants').where("id_evenement", "==", id)
+
 }
 
 export default Firebase
