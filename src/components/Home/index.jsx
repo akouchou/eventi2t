@@ -31,7 +31,19 @@ const Home = () => {
     return(
        <Fragment>
            <Carousel data={data} loading={loading} />
-           <Videos/>
+           <div className="justify-content-space-between mt-3 ">
+                {
+                    data.map(event => (
+                        event.status == 1 && (
+                                <div style={{ display: "block", textAlign: "center"}}>
+                                    <video src={event.video} height="300" width="1000px" controls="controls" className="container" />
+                                </div>
+                        )
+                    ))
+                }
+            </div>
+
+
                 <div className="justify-content-space-between mt-3">
                     <div style={{ display: "block", textAlign: "center"}}>
                         <h3>Evènements A Venir</h3>

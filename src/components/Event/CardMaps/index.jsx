@@ -3,7 +3,7 @@ import React, { Fragment, useEffect, useState, useContext } from 'react'
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 import { FirebaseContext } from '../../Firebase'
 
-const position = [3.861770, 11.518750]
+const position = [3.872392177581787,11.53204345703125]
 
 
 const MapCard = ( {match} ) => {
@@ -17,6 +17,8 @@ const MapCard = ( {match} ) => {
 
     useEffect(() => {
       const fetchDataEvent = async () => {
+
+    
           await firebase.detailEvent().doc(id).get()
           .then(doc => {
               dataEvent.push(doc.data())
