@@ -50,7 +50,7 @@ const Home = () => {
                                   <Card.Text>
                                   {event.date}
                                   </Card.Text>
-                                  <Link to={`/event/${event.id}`} variant="danger">Plus d'infos</Link>
+                                  <Link to={`/event/${event.id}, ${event.titre}`} variant="danger">Plus d'infos</Link>
                               </Card.Body>
                           </Card>
                           </div>

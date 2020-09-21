@@ -38,8 +38,6 @@ const Event = ({ match }) =>  {
             fetchDataEvent()
         }, []);
 
-        console.log(dataEvent.titre);
-
         return(  
             <Fragment>
                 <section id="hero">
@@ -76,13 +74,13 @@ const Event = ({ match }) =>  {
                 </Modal.Header>
                 <Modal.Body>
 
-                        <Addparticip id={id} />
+                        <Addparticip id={id} eventName={dataEvent.titre}/>
 
                 </Modal.Body>
                
             </Modal>
 
-                <Countdown timeTillDate="09 30 2020, 6:00 am" timeFormat="MM DD YYYY, h:mm a" />
+                <Countdown timeTillDate="09-30-2020, 6:00 am" timeFormat="MM DD YYYY, h:mm a" />
 
                 
                 <section id="about" className="about section-bg">
@@ -150,10 +148,10 @@ const Event = ({ match }) =>  {
                                     <span>Accountant</span>
                                     <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
                                     <div className="social">
-                                        <a href=""><i className="ri-twitter-fill"></i></a>
-                                        <a href=""><i className="ri-facebook-fill"></i></a>
-                                        <a href=""><i className="ri-instagram-fill"></i></a>
-                                        <a href=""> <i className="ri-linkedin-box-fill"></i> </a>
+                                        <a href="##"><i className="ri-twitter-fill"></i></a>
+                                        <a href="##"><i className="ri-facebook-fill"></i></a>
+                                        <a href="##"><i className="ri-instagram-fill"></i></a>
+                                        <a href="##"><i className="ri-linkedin-box-fill"></i> </a>
                                     </div>
                                     </div>
                                 </div>

@@ -8,19 +8,22 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
+import * as emailjs from 'emailjs-com'
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Addparticip = ({id})=> {
+const Addparticip = ({id, eventName})=> {
 
     const firebase = useContext(FirebaseContext)
 
     const [nom, setNom] = useState('');
     const [prenom, setPrenom] = useState('');
     const [email, setEmail] = useState('');
+    const eventTitle = eventName;
+    console.log(eventName)
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -28,13 +31,31 @@ const Addparticip = ({id})=> {
             id_evenemant:id,
             name: nom,
             prenom: prenom,
-            email: email
+            email: email,
         }).then(() =>{
             setNom('')
             setPrenom('')
             setEmail('')
             handleClickOpen()
         })
+
+
+        let templateParams = {
+          nom: nom,
+          prenom: prenom,
+          email: email,
+          evenement: eventTitle
+         }
+    
+         emailjs.send(
+            "service_u5w8aak",
+            "template_g3z15tj",
+           templateParams,
+          'user_qsCaizYblaLOa904GGYVm'
+         ).then(res => {
+            console.log('Votre mail a bien été envoyé')
+          }).catch(err => console.error('Probmème reconctré. Veuillez reesayer s\'il-vous-plaît', err))
+
     }
 
 
