@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Videos() {
+function Video() {
   return (
     <div>
           <div className="justify-content-space-between mt-3 ">
@@ -12,4 +12,4 @@ function Videos() {
   );
 }
 
-export default Videos;
+export default Video;

@@ -1,27 +1,27 @@
 import React from 'react';
+
+import Header from '../Home/header';
 import Home from '../Home/index'
-import Signup from '../Signup/index'
-import Register from '../Register/index'
+import Event from '../Event/index'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom' 
+import Footer from '../Home/footer';
+import MapCard from '../Event/CardMaps';
 
-import { BrowserRouter } from 'react-router-dom';
+function App() {
+  return (
+    <Router>
 
-import { Route, Switch} from 'react-router-dom' 
-import PrivateRoute from '../PrivateRoute';
-
-//
-
-const App = () => {
-  return(
-    <BrowserRouter>
-       <Switch>
-        <Route path="/singin" component={Signup} />
-        
-        <Route path="/singup" component={Register}/>
-        <PrivateRoute  path="/" component={Home} />
+      <Header/>
       
-       </Switch>
-    </BrowserRouter>
-  )
+      <Switch>
+      <Route path="/event/:id" component={Event} />
+      <Route exact path="/" component={Home} />
+      <Route path="/map/:id" component={MapCard} />
+        
+      </Switch>
+      
+      <Footer/>
+    </Router>
+  );
 }
-
 export default App;
