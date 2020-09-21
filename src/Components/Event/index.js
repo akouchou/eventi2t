@@ -6,7 +6,7 @@ import Addparticip from './AddParticip';
 import { Link } from 'react-router-dom';
 import Partenaire from './Partenaires';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
-import mapCard from './CardMaps';
+import MapCard from './CardMaps';
 
 
 const Event = ({ match }) =>  {
@@ -28,6 +28,7 @@ const Event = ({ match }) =>  {
         const [loading, setLoading] = useState(false)
 
         const id = match.params.id
+    
 
         useEffect(() => {
             const fetchDataEvent = async () => {
@@ -41,6 +42,8 @@ const Event = ({ match }) =>  {
     
             fetchDataEvent()
         }, []);
+
+        console.log(dataEvent.titre);
 
         return(  
             <Fragment>
@@ -78,13 +81,11 @@ const Event = ({ match }) =>  {
                 </Modal.Header>
                 <Modal.Body>
 
-                        <Addparticip id={id} eventName={dataEvent.titre}/>
+                        <Addparticip id={id} event={dataEvent.titre}/>
 
                 </Modal.Body>
                
                 </Modal>
-
-                <Countdown timeTillDate="09-30-2020, 6:00 am" timeFormat="MM-DD-YYYY, h:mm a" />
 
                 {
                     loading ? <Countdown timeTillDate={ dataEvent.date } timeFormat="MM DD YYYY, h:mm a" /> : (
@@ -100,7 +101,6 @@ const Event = ({ match }) =>  {
 
                         <div className="row content">
                         <div className="col-lg-6">
-                            <h3> { dataEvent.description } </h3>
                             <h3>Lieu Evenement: { dataEvent.ville } </h3>
                             <Link className="btn btn-primary" to={`/map/${id}`}>visualiser</Link>
                         </div>
@@ -159,10 +159,10 @@ const Event = ({ match }) =>  {
                                     <span>Accountant</span>
                                     <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
                                     <div className="social">
-                                        <a href="##"><i className="ri-twitter-fill"></i></a>
-                                        <a href="##"><i className="ri-facebook-fill"></i></a>
-                                        <a href="##"><i className="ri-instagram-fill"></i></a>
-                                        <a href="##"><i className="ri-linkedin-box-fill"></i> </a>
+                                        <a href=""><i className="ri-twitter-fill"></i></a>
+                                        <a href=""><i className="ri-facebook-fill"></i></a>
+                                        <a href=""><i className="ri-instagram-fill"></i></a>
+                                        <a href=""> <i className="ri-linkedin-box-fill"></i> </a>
                                     </div>
                                     </div>
                                 </div>

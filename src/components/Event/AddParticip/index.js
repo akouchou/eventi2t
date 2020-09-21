@@ -15,15 +15,17 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Addparticip = ({id, eventName})=> {
+const Addparticip = ({id, event})=> {
 
     const firebase = useContext(FirebaseContext)
 
     const [nom, setNom] = useState('');
     const [prenom, setPrenom] = useState('');
     const [email, setEmail] = useState('');
-    const eventTitle = eventName;
-    console.log(eventName)
+    console.log(event)
+    console.log("Bonjour")
+
+    const _eventName = event
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -31,7 +33,7 @@ const Addparticip = ({id, eventName})=> {
             id_evenemant:id,
             name: nom,
             prenom: prenom,
-            email: email,
+            email: email
         }).then(() =>{
             setNom('')
             setPrenom('')
@@ -39,12 +41,12 @@ const Addparticip = ({id, eventName})=> {
             handleClickOpen()
         })
 
-
+        //const { name, email, subject, message } = this.state
         let templateParams = {
           nom: nom,
           prenom: prenom,
           email: email,
-          evenement: eventTitle
+          evenement: _eventName,
          }
     
          emailjs.send(
@@ -55,7 +57,6 @@ const Addparticip = ({id, eventName})=> {
          ).then(res => {
             console.log('Votre mail a bien été envoyé')
           }).catch(err => console.error('Probmème reconctré. Veuillez reesayer s\'il-vous-plaît', err))
-
     }
 
 

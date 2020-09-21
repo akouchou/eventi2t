@@ -3,7 +3,6 @@ import React, {Fragment, useContext, useState, useEffect} from 'react';
 import Carousel from './carousel/index'
 import Contact from './contact/index'
 import Videos from './video/index';
-//import ContactUs from './contactUs/index'
 import {Card} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 
@@ -28,12 +27,23 @@ const Home = () => {
         fetchDataEvent()
     }, []);
 
-  console.log(data);
 
     return(
        <Fragment>
-           <Carousel />
-           <Videos/>
+           <Carousel data={data} loading={loading} />
+           <div className="justify-content-space-between mt-3 ">
+                {
+                    data.map(event => (
+                        event.status == 1 && (
+                                <div style={{ display: "block", textAlign: "center"}}>
+                                    <video src={event.video} height="300" width="1000px" controls="controls" className="container" />
+                                </div>
+                        )
+                    ))
+                }
+            </div>
+
+
                 <div className="justify-content-space-between mt-3">
                     <div style={{ display: "block", textAlign: "center"}}>
                         <h3>Evènements A Venir</h3>
@@ -50,7 +60,7 @@ const Home = () => {
                                   <Card.Text>
                                   {event.date}
                                   </Card.Text>
-                                  <Link to={`/event/${event.id}, ${event.titre}`} variant="danger">Plus d'infos</Link>
+                                  <Link to={`/event/${event.id}`} variant="danger">Plus d'infos</Link>
                               </Card.Body>
                           </Card>
                           </div>
@@ -100,7 +110,6 @@ const Home = () => {
                     </div>
                 </div>
            <Contact />
-
        </Fragment>
     )
 }
