@@ -41,7 +41,7 @@ const Addparticip = ({id, event})=> {
             handleClickOpen()
         })
 
-        //const { name, email, subject, message } = this.state
+        //const { name, email, subject, message } = this.state//
         let templateParams = {
           nom: nom,
           prenom: prenom,
