@@ -75,14 +75,13 @@ useEffect(() => {
 
                         {
                             loading ? tasks.map(comment => (
-                                comment.statut == 1 && (
+                                
                                     <Fragment>
                                         <div className="row" style={{backgroundColor: "#F5F3F2", borderRadius: "7px", margin: "3px",padding: "7px"}}>
                                             <p style={{fontWeight: "bold", marginRight: "7px"}}> {comment.nom_auteur} : </p>  <p> {comment.commentaire} </p>
                                         </div>
                                     </Fragment>
-                                )
-                            )) : (
+                                                        )) : (
                                 <div className="spinner-border text-center" role="status">
                                    <span className="sr-only">Loading...</span>
                                 </div>
