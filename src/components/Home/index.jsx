@@ -4,6 +4,7 @@ import Contact from './contact/index'
 import Videos from './video/index';
 import {Card} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
+import SearchBar from './searchBar/searchBar.jsx'
 
 import { FirebaseContext } from '../Firebase'
 
@@ -29,6 +30,7 @@ const Home = () => {
 
     return(
        <Fragment>
+           <SearchBar/>
            <Carousel data={data} loading={loading} />
            <div className="justify-content-space-between mt-3 ">
                 {
@@ -53,7 +55,7 @@ const Home = () => {
                               event.status == 2 && (
                                 <div className="md-2" style={{ display: "inline-block" }}>    
                                 <Card style={{ width: '20rem',}} className="m-2">
-                              <Card.Img variant="top" src={event.urlImage} style={{ height:'100px' }} className="card-mg-top"/>
+                              <Card.Img variant="top" src={event.urlImage} style={{ height:'200px' }} className="card-mg-top"/>
                               <Card.Body>
                                   <Card.Title style={{ fontSize:'16px' }}> {event.titre} </Card.Title>
                                   <Card.Text>

@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import {Button, Modal, Form} from 'react-bootstrap';
+import {FormGroup, Input } from 'reactstrap'
 
 function Header() {
     const [show, setShow] = React.useState(false);
@@ -22,7 +23,7 @@ function Header() {
                                 <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#services">Apropos</a></li>
                                 <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#services">Evénements passés</a></li>
                             </ul>
-                        </div> 
+                        </div>
                     </div> 
                 </nav>
             </header>
