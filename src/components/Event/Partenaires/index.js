@@ -33,7 +33,7 @@ const Partenaire = ({id}) => {
                   <span style={{ opacity: 0.1, color: "black" }} >Partenaires</span>
                   <h2>Partenaires</h2>
 
-              </div>
+               </div>
 
               <div className="justify-content-space-between ">
              

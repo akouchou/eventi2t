@@ -29,7 +29,11 @@ class Firebase {
 
     storeReservation = () => this.db.collection('reservations');
 
-    selectPartenaire = id => this.db.collection('partenaire') .where("id_evenement", "==", id)
+    sendComment = () => this.db.collection('commentaires')
+
+    selectComments = (id) => this.db.collection('commentaires').where("id_evenement", "==", id)
+
+    selectPartenaire = id => this.db.collection('partenaire').where("id_evenement", "==", id)
 
     selectIntervenant = id => this.db.collection('intervenants').where("id_evenement", "==", id)
 

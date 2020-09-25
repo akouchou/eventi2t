@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import App from './components/App/App'
 //import Firebase, { FirebaseContext } from './Components/Firebase'
-import MapCard from './components/Event/CardMaps';
 import Firebase, {FirebaseContext} from './components/Firebase'
+//import MapCard from './Components/Event/CardMaps';
 
 
 ReactDOM.render(

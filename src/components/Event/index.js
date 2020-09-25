@@ -6,6 +6,7 @@ import Addparticip from './AddParticip';
 import { Link } from 'react-router-dom';
 import Partenaire from './Partenaires';
 import Intervenants from './Intervenants'
+import Commentaires from './Commentaires'
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 import MapCard from './CardMaps';
 
@@ -44,7 +45,7 @@ const Event = ({ match }) =>  {
             fetchDataEvent()
         }, []);
 
-        console.log(dataEvent.titre);
+        console.log(dataEvent.status);
 
         return(  
             <Fragment>
@@ -61,9 +62,15 @@ const Event = ({ match }) =>  {
                             <div className="carousel-content">
                                 <h2 className="animate__animated animate__fadeInDown">Bienvenue  <span>{dataEvent.titre}</span></h2>
                                 <p className="animate__animated animate__fadeInUp">{dataEvent.description}</p>
-                                <Button className="animate__animated animate__fadeInUp" variant="danger" onClick={handleShow} >
-                                            Réservation
-                                </Button>
+                                {
+                                    dataEvent.status == 3 ? <Button className="btn btn-primary" disabled>
+                                    Evenement passé
+                                                           </Button> : (
+                                                   <Button className="animate__animated animate__fadeInUp" variant="danger" onClick={handleShow} >
+                                                               Réservation
+                                                   </Button>
+                                                           )
+                                }
 
                             </div>
                             </div>
@@ -89,10 +96,12 @@ const Event = ({ match }) =>  {
                 </Modal>
 
                 {
-                    loading ? <Countdown timeTillDate={ dataEvent.date } timeFormat="YYYY MM DD , h:mm a" /> : (
-                        <div className="spinner-border text-center" style={{float: "center"}} role="status">
-                          <span className="sr-only">Loading...</span>
-                        </div>
+                  
+                        loading ?  ( dataEvent.status == 2 || dataEvent.status == 1) && ( <Countdown timeTillDate={ dataEvent.date } timeFormat="YYYY MM DD, h:mm a" />) : (
+                            <div className="spinner-border text-center" style={{float: "center"}} role="status">
+                              <span className="sr-only">Loading...</span>
+                            </div>
+                        
                     )
 
                 }
@@ -128,6 +137,8 @@ const Event = ({ match }) =>  {
                 <section id="team" className="team ">
                     <Intervenants id={id} />
                 </section>
+                   
+                    <Commentaires id={id} />
 
                 <section id="services" className="services section-bg" >
                     <Partenaire id={id}/>
