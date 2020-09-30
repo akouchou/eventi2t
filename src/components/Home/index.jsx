@@ -1,5 +1,9 @@
 import React, {Fragment, useContext, useState, useEffect} from 'react';
 
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+
 import Carousel from './carousel/index'
 import Contact from './contact/index'
 import Videos from './video/index';
@@ -7,6 +11,7 @@ import {Card} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 import { FirebaseContext } from '../Firebase'
 import Slider from "react-slick";
+import Footer from './footer';
 
 const Home = () => {
 
@@ -55,36 +60,30 @@ const Home = () => {
                     <div style={{ display: "block", textAlign: "center"}}>
                         <h3>Evènements A Venir</h3>
                         <h1 style={{ display: "inline-block" , width: "150px", height: "5px", backgroundColor: "#e74c3c" }} ></h1> <br/>
+                        <OwlCarousel className="owl-theme" loop margin={5} nav>
+                          {  (  data.map(event => (
                     
-                    <div className="" style={{  overflowX:"auto" }}>
-                          { loading? (  data.map(event => (
-                    
-                            event.status == 2 && (
-                            <div className="md-2" style={{ display: "inline-block", overflowX:"auto" }}>   
-                        
-                            <Card style={{ width: '20rem',}} className="m-2">
-                              <Card.Img variant="top" src={event.urlImage} style={{ height:'100px' }} className="card-mg-top"/>
-                              <Card.Body>
-                                  <Card.Title style={{ fontSize:'16px' }}> {event.titre} </Card.Title>
-                                  <Card.Text>
-                                  {event.date}
-                                  </Card.Text>
-                                  <Link to={`/event/${event.id}`} variant="danger">Plus d'infos</Link>
-                              </Card.Body>
-                            </Card>
-                        
-                          </div>
+                              event.status == 2 && (
+                                <div class="item" >
+                               <Card style={{ width: '20rem'}} className="m-2">
+                                    <Card.Img variant="top" src={event.urlImage} style={{ height:'270px' }} className="card-mg-top"/>
+                                    <Card.Body className="bg-gradient" >
+                                        <Card.Title style={{ fontSize:'16px', color: 'white' }}> {event.titre} </Card.Title>
+                                        <Card.Text style={{color: 'white'}}>
+                                        {event.date}
+                                        </Card.Text>
+                                        <Link to={`/event/${event.id}`} className="btn btn-light">Plus d'infos</Link>
+                                    </Card.Body>
+                              </Card>            
+                
 
+                            </div>
                               ) 
                   
                     ))
-                    ) : (
-                    <div className="spinner-border text-center" role="status">
-                       <span className="sr-only">Loading...</span>
-                    </div>
                     )
                     }
-                    </div>
+                        </OwlCarousel>   
                     
                     </div>
                  
@@ -97,37 +96,34 @@ const Home = () => {
                     <div style={{ display: "block", textAlign: "center"}}>
                         <h3>Evènements Passés</h3>
                         <h1 style={{ display: "inline-block" , width: "150px", height: "5px", backgroundColor: "#e74c3c" }} ></h1> <br/>
-                      
-                          { loading? (  data.map(event => (
-                    
-                              event.status == 3 && (
-                                 
-                        <div className="md-2" style={{ display: "inline-block" }}> 
-                            <Card style={{ width: '20rem',}} className="m-2">
-                              <Card.Img variant="top" src={event.urlImage} style={{ height:'100px' }} className="card-mg-top"/>
-                              <Card.Body>
-                                  <Card.Title style={{ fontSize:'16px' }}> {event.titre} </Card.Title>
-                                  <Card.Text>
-                                  {event.date}
-                                  </Card.Text>
-                                  <Link to={`/event/${event.id}`} variant="danger">Plus d'infos</Link>
-                              </Card.Body>
-                          </Card>
-                          </div>
-                         
+                        <OwlCarousel className="owl-theme" loop margin={5} nav>
+                          {  (  data.map(event => (
+                              event.status == 3 && (                           
+                                      
+                                        <div class="item">
+                                           <Card style={{ width: '20rem'}} className="m-1">
+                                                <Card.Img variant="top" src={event.urlImage} style={{ height:'270px' }} className="card-mg-top"/>
+                                                <Card.Body className="bg-gradient">
+                                                    <Card.Title style={{ fontSize:'16px', color: 'white' }}> {event.titre} </Card.Title>
+                                                    <Card.Text style={{color: 'white'}}>
+                                                    {event.date}
+                                                    </Card.Text>
+                                                    <Link to={`/event/${event.id}`} className="btn btn-light" >Plus d'infos</Link>
+                                                </Card.Body>
+                              </Card>
+                                        </div>                                                          
+                                
                               )
                   
                     ))
-                    ) : (
-                    <div className="spinner-border text-center" role="status">
-                       <span className="sr-only">Loading...</span>
-                    </div>
-                    )
+                    ) 
                     }
-                        
+                   </OwlCarousel>   
                     </div>
                 </div>
            <Contact />
+
+           <Footer/>
        </Fragment>
     )
 }

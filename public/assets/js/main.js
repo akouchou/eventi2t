@@ -1,11 +1,4 @@
-/*  ---------------------------------------------------
-    Template Name: Manup
-    Description: Manup Event HTML Template
-    Author: Colorlib
-    Author URI: http://colorlib.com
-    Version: 1.0
-    Created: Colorlib
----------------------------------------------------------  */
+
 
 'use strict';
 
@@ -68,7 +61,7 @@
 		Testimonial Slider
     ----------------------- */
     $(".testimonial-slider").owlCarousel({
-        items: 2,
+        items: 1,
         dots: false,
         autoplay: false,
         loop: true,
@@ -122,5 +115,16 @@
             "<div class='cd-item'><span>%M</span> <p>Mins</p> </div>" + 
             "<div class='cd-item'><span>%S</span> <p>Secs</p> </div>"));
     });
+
+    function aos_init() {
+        AOS.init({
+          duration: 1000,
+          easing: "ease-in-out-back",
+          once: true
+        });
+      }
+      $(window).on('load', function() {
+        aos_init();
+      });
 
 })(jQuery);
