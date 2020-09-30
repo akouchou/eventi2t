@@ -1,5 +1,8 @@
 import React, { Fragment, useState, useContext, useEffect} from 'react';
 import { FirebaseContext } from '../../Firebase'
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
 
 const Commentaires = ({ id }) => {
 
@@ -48,50 +51,84 @@ useEffect(() => {
 
     return(
         <Fragment>
-            <div className="container">
-
-               <div className="section-title">
-                  <span style={{ opacity: 0.1, color: "black" }} >Commentaires</span>
-                  <h2>Commentaires</h2>
-
-               </div>
-
-                <div className="row">
-                    <div className="col-md-5">
-                        <form onSubmit={handleSubmit}>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Votre Nom</label>
-                                <input type="text" onChange={e => setName(e.target.value)} class="form-control" id="nom" placeholder="Entrer votre nom" />               
+         
+            <section className="testimonial-section spad">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <div className="section-title">
+                                <h2>Commentaires</h2>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Entrer votre commentaire</label>
-                                <textarea onChange={e => setComment(e.target.value)} class="form-control" id="commentaire" rows="3"></textarea>
-                            </div>
-                            <button className="btn btn-success">Soumettre</button>
-                        </form>
+                        </div>
                     </div>
-                    <div className="col-md-7 text-center">
-                        <h6 style={{color: "#F9A6A2", fontWeight: "bold"}} >liste des commentaires sur l'évènement</h6>
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <div className="row">
+                                <div className="testimonial-slider">
+                                    <OwlCarousel className="owl-theme" loop margin={10} nav>
 
-                        {
-                            loading ? tasks.map(comment => (
-                                comment.statut == 1 && (
-                                    <Fragment>
-                                        <div className="row" style={{backgroundColor: "#F5F3F2", borderRadius: "7px", margin: "3px",padding: "7px"}}>
-                                            <p style={{fontWeight: "bold", marginRight: "7px"}}> {comment.nom_auteur} : </p>  <p> {comment.commentaire} </p>
+                                   
+
+                                        {
+                                             tasks.map(comment => (
+                                                comment.statut == 1 ? (
+                                                    <Fragment>
+                                                        <div class="item">
+                                                            <div className="col-lg-6">
+                                                                <div className="testimonial-item">
+                                                                    <div className="ti-author">
+                                                                        <div className="quote-pic">
+                                                                            <img src="../assets/img/quote.png" alt="" />
+                                                                        </div>
+                                                                        <div className="ta-pic">
+                                                                        </div>
+                                                                        <div className="ta-text">
+                                                                            <h5>{comment.nom_auteur}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p>“{comment.commentaire}”</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </Fragment>
+                                                ):(
+                                                <div class="item">
+                                            <div className="col-lg-6">
+                                                <div className="testimonial-item">
+                                                    <div className="ti-author">
+                                                        <div className="quote-pic">
+                                                            <img src="../assets/img/quote.png" alt="" />
+                                                        </div>
+                                                        <div className="ta-pic">
+                                                        </div>
+                                                        <div className="ta-text">
+                                                            <h5>Aucun commentaires</h5>
+                                                        </div>
+                                                    </div>
+                                                    <p>“Soyez le premier a laisser un commentaire ”</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </Fragment>
-                                )
-                            )) : (
-                                <div className="spinner-border text-center" role="status">
-                                   <span className="sr-only">Loading...</span>
-                                </div>
-                            )
-                        }
+                                            )
+                                            )
+                                            )
+                                             
+                                        }
+                                    </OwlCarousel>
 
-                    </div>
-                </div>
-            </div>
+                                    
+
+                                            
+
+                                                    
+
+                                                        </div>
+                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+    </section>
+            
         </Fragment>
     )
 }

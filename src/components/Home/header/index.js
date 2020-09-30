@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import {Button, Modal, Form} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function Header() {
     const [show, setShow] = React.useState(false);
@@ -7,25 +8,35 @@ function Header() {
     const handleShow = () => setShow(true);
     return (
         <Fragment>
-            <header>
-                <nav id="navbar_top" className="navbar navbar-expand-lg navbar-dark bg-light">
-                    <div className="container">
-                        <a className="navbar-brand text-dark" style={{ fontSize: '20px' }}  href="#">I2T<span>Event</span></a>
-                        <button className="navbar-toggler" style={{ backgroundColor: '#e74c3c' }} type="button" data-toggle="collapse" data-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon text-dark" ></span>
-                        </button>
-                        <div className="collapse navbar-collapse" id="main_nav">
-                            <ul className="navbar-nav ml-auto">
-                                <li className="active"><a className="nav-link text-dark"  href="#hero" style={{ fontSize: '15px' }}>Bienvenue</a></li>
-                                <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#about">Programme</a></li>
-                                <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#team">Contactez Nous</a></li>
-                                <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#services">Apropos</a></li>
-                                <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#services">Evénements passés</a></li>
-                            </ul>
-                        </div> 
-                    </div> 
-                </nav>
-            </header>
+            <header class="header-section">
+                <div class="container">
+                    <div class="logo">
+                        <a href="">
+                            <img src="../assets/img/logo/logo.jpg" width="100px" height="50px" alt=""/>
+                </a>
+            </div>
+                        <div class="nav-menu">
+                            <nav class="mainmenu mobile-menu">
+                                <ul>
+                                    <li class="active"><a href="./index.html">Home</a></li>
+                                    <li><a href="">About</a></li>
+                                    <li><a href=".">Speakers</a>
+                                        <ul class="dropdown">
+                                            <li><a href="#">Jayden</a></li>
+                                            <li><a href="#">Sara</a></li>
+                                            <li><a href="#">Emma</a></li>
+                                            <li><a href="#">Harriet</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="./schedule.html">Schedule</a></li>
+                                    <li><a href="./blog.html">Blog</a></li>
+                                    <li><a href="./contact.html">Contacts</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div id="mobile-menu-wrap"></div>
+                    </div>
+    </header>
  
         </Fragment>
     );

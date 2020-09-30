@@ -5,11 +5,18 @@ import Contact from './contact/index'
 import Videos from './video/index';
 import {Card} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
-
 import { FirebaseContext } from '../Firebase'
-
+import Slider from "react-slick";
 
 const Home = () => {
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
 
     const firebase = useContext(FirebaseContext)
 
@@ -44,16 +51,18 @@ const Home = () => {
             </div>
 
 
-                <div className="justify-content-space-between mt-3">
+                <div className="justify-content-space-between mt-3 ">
                     <div style={{ display: "block", textAlign: "center"}}>
                         <h3>Evènements A Venir</h3>
                         <h1 style={{ display: "inline-block" , width: "150px", height: "5px", backgroundColor: "#e74c3c" }} ></h1> <br/>
-                      
+                    
+                    <div className="" style={{  overflowX:"auto" }}>
                           { loading? (  data.map(event => (
                     
-                              event.status == 2 && (
-                                <div className="md-2" style={{ display: "inline-block" }}>    
-                                <Card style={{ width: '20rem',}} className="m-2">
+                            event.status == 2 && (
+                            <div className="md-2" style={{ display: "inline-block", overflowX:"auto" }}>   
+                        
+                            <Card style={{ width: '20rem',}} className="m-2">
                               <Card.Img variant="top" src={event.urlImage} style={{ height:'100px' }} className="card-mg-top"/>
                               <Card.Body>
                                   <Card.Title style={{ fontSize:'16px' }}> {event.titre} </Card.Title>
@@ -62,8 +71,10 @@ const Home = () => {
                                   </Card.Text>
                                   <Link to={`/event/${event.id}`} variant="danger">Plus d'infos</Link>
                               </Card.Body>
-                          </Card>
+                            </Card>
+                        
                           </div>
+
                               ) 
                   
                     ))
@@ -73,11 +84,16 @@ const Home = () => {
                     </div>
                     )
                     }
-                        
                     </div>
+                    
+                    </div>
+                 
                 </div>
 
                 <div className="justify-content-space-between mt-3" style={{ marginTop: "35px"}}>
+                
+                   
+              
                     <div style={{ display: "block", textAlign: "center"}}>
                         <h3>Evènements Passés</h3>
                         <h1 style={{ display: "inline-block" , width: "150px", height: "5px", backgroundColor: "#e74c3c" }} ></h1> <br/>
@@ -85,8 +101,9 @@ const Home = () => {
                           { loading? (  data.map(event => (
                     
                               event.status == 3 && (
-                                <div className="md-2" style={{ display: "inline-block" }}>    
-                                <Card style={{ width: '20rem',}} className="m-2">
+                                 
+                        <div className="md-2" style={{ display: "inline-block" }}> 
+                            <Card style={{ width: '20rem',}} className="m-2">
                               <Card.Img variant="top" src={event.urlImage} style={{ height:'100px' }} className="card-mg-top"/>
                               <Card.Body>
                                   <Card.Title style={{ fontSize:'16px' }}> {event.titre} </Card.Title>
@@ -97,6 +114,7 @@ const Home = () => {
                               </Card.Body>
                           </Card>
                           </div>
+                         
                               )
                   
                     ))

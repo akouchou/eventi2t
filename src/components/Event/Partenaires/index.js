@@ -31,8 +31,8 @@ const Partenaire = ({id}) => {
 
                <div className="section-title">
                   <span style={{ opacity: 0.1, color: "black" }} >Partenaires</span>
-                  <h2>Partenaires</h2>
-
+                  <h2>Partenairs</h2>
+                    
                </div>
 
               <div className="justify-content-space-between ">
@@ -53,7 +53,7 @@ const Partenaire = ({id}) => {
 
                   </div>
               </div>
-
+            
           </div>
 
     </Fragment>
