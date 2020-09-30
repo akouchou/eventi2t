@@ -56,7 +56,7 @@ import moment from "moment";
             <div class="row">
               <div class="col-lg-4">
                 <div class="counter-text">
-                  <span>Date de l'évènement</span>
+                
                   <h3>
                     Comptez chaque seconde
                     <br />

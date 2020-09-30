@@ -22,6 +22,7 @@ const Addparticip = ({id, event})=> {
     const [nom, setNom] = useState('');
     const [prenom, setPrenom] = useState('');
     const [email, setEmail] = useState('');
+    const [statut, setStatut] = useState('')
     console.log(event)
     console.log("Bonjour")
 
@@ -32,12 +33,14 @@ const Addparticip = ({id, event})=> {
         firebase.storeReservation().add({
             id_evenemant:id,
             name: nom,
+            statut: statut,
             prenom: prenom,
             email: email
         }).then(() =>{
             setNom('')
             setPrenom('')
             setEmail('')
+            setStatut('')
             handleClickOpen()
         })
 
@@ -89,6 +92,20 @@ const Addparticip = ({id, event})=> {
                   <input className="form-control" type="text" onChange={e => setPrenom(e.target.value)} value={prenom} id="prenom" placeholder="First name" required/>
                   <Form.Text className="text-muted">
                      Entrer votre prenom / Enter your first name
+                  </Form.Text> 
+                  
+              </Form.Group>
+              <Form.Group controlId="formBasicEmail">
+                  <label>Statut</label>
+                 <select class="form-control"  onChange={e => setStatut(e.target.value)} value={statut} id="statut" placeholder="Entrer votre statut" required >
+                    <option>Etudiant</option>
+                    <option>Entreprise</option>
+                    <option>Consultant</option>
+                    <option>Enseignant</option>
+                    <option>Autre</option>
+                </select>
+                  <Form.Text className="text-muted">
+                     Entrer votre statut
                   </Form.Text> 
                   
               </Form.Group>

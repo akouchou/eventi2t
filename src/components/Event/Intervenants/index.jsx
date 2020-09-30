@@ -35,7 +35,7 @@ const Intervenants = ({id}) => {
                     </div>
 
                     {
-                        loading? tasks.map(spell => (
+                        tasks.map(spell => (
                             <div className="row">
                                 <div className="col-md-6 mt-4">
                                     <div className="member d-flex align-items-start">
@@ -50,11 +50,7 @@ const Intervenants = ({id}) => {
                                 </div>
 
                             </div>
-                        )) : (
-                            <div className="spinner-border text-center" role="status">
-                              <span className="sr-only">Loading...</span>
-                            </div>
-                        )
+                        )) 
                     }
             </div>  
         </Fragment>

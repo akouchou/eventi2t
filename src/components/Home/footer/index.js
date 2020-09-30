@@ -13,19 +13,13 @@ function Footer() {
             
               <ul>
                 <li>
-                  <a href="#">Home</a>
+                  <Link to="/">Bienvenue</Link>
                 </li>
                 <li>
-                  <a href="#">Speakers</a>
+                  <Link to="/faq">FAQ</Link>
                 </li>
                 <li>
-                  <a href="#">Schedule</a>
-                </li>
-                <li>
-                  <a href="#">Blog</a>
-                </li>
-                <li>
-                  <a href="#">Contact</a>
+                  <a href="#team">Contact</a>
                 </li>
               </ul>
               <div className="copyright-text">
