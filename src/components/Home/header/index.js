@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import {Button, Modal, Form} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import {FormGroup, Input } from 'reactstrap'
 
 function Header() {
@@ -17,10 +18,11 @@ function Header() {
                         </button>
                         <div className="collapse navbar-collapse" id="main_nav">
                             <ul className="navbar-nav ml-auto">
-                                <li className="active"><a className="nav-link text-dark"  href="#hero" style={{ fontSize: '15px' }}>Bienvenue</a></li>
-                                <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#about">Programme</a></li>
+                                <li className="active"><Link to="/" className="nav-link text-dark"  href="#hero" style={{ fontSize: '15px' }}>Bienvenue</Link></li>
+                                
                                 <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#team">Contactez Nous</a></li>
                                 <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#services">Apropos</a></li>
+                                <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#services">Evénements a venir</a></li>
                                 <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#services">Evénements passés</a></li>
                             </ul>
                         </div>

@@ -28,7 +28,7 @@ const Home = () => {
     }, []);
 
 
-    return(
+    return loading ? (
        <Fragment>
            <SearchBar/>
            <Carousel data={data} loading={loading} />
@@ -50,29 +50,24 @@ const Home = () => {
                         <h3>Evènements A Venir</h3>
                         <h1 style={{ display: "inline-block" , width: "150px", height: "5px", backgroundColor: "#e74c3c" }} ></h1> <br/>
                       
-                          { loading? (  data.map(event => (
+                          {data.map(event => (
                     
                               event.status == 2 && (
                                 <div className="md-2" style={{ display: "inline-block" }}>    
                                 <Card style={{ width: '20rem',}} className="m-2">
-                              <Card.Img variant="top" src={event.urlImage} style={{ height:'200px' }} className="card-mg-top"/>
-                              <Card.Body>
-                                  <Card.Title style={{ fontSize:'16px' }}> {event.titre} </Card.Title>
-                                  <Card.Text>
+                              <Card.Img variant="top" src={event.urlImage} style={{ height:'260px' }} className="card-mg-top"/>
+                              <Card.Body className="bg-gradient">
+                                  <Card.Title style={{ fontSize:'16px', color: "white"  }}> {event.titre} </Card.Title>
+                                  <Card.Text style={{color: "white"}}>
                                   {event.date}
                                   </Card.Text>
-                                  <Link to={`/event/${event.id}`} variant="danger">Plus d'infos</Link>
+                                  <Link to={`/event/${event.id}`} className="btn btn-light" variant="danger">Plus d'infos</Link>
                               </Card.Body>
                           </Card>
                           </div>
                               ) 
                   
                     ))
-                    ) : (
-                    <div className="spinner-border text-center" role="status">
-                       <span className="sr-only">Loading...</span>
-                    </div>
-                    )
                     }
                         
                     </div>
@@ -83,36 +78,36 @@ const Home = () => {
                         <h3>Evènements Passés</h3>
                         <h1 style={{ display: "inline-block" , width: "150px", height: "5px", backgroundColor: "#e74c3c" }} ></h1> <br/>
                       
-                          { loading? (  data.map(event => (
+                          { data.map(event => (
                     
                               event.status == 3 && (
                                 <div className="md-2" style={{ display: "inline-block" }}>    
                                 <Card style={{ width: '20rem',}} className="m-2">
-                              <Card.Img variant="top" src={event.urlImage} style={{ height:'100px' }} className="card-mg-top"/>
-                              <Card.Body>
-                                  <Card.Title style={{ fontSize:'16px' }}> {event.titre} </Card.Title>
-                                  <Card.Text>
+                              <Card.Img variant="top" src={event.urlImage} style={{ height:'260px' }} className="card-mg-top"/>
+                              <Card.Body className="bg-gradient">
+                                  <Card.Title style={{ fontSize:'16px', color: "white" }}> {event.titre} </Card.Title>
+                                  <Card.Text style={{color: "white"}}>
                                   {event.date}
                                   </Card.Text>
-                                  <Link to={`/event/${event.id}`} variant="danger">Plus d'infos</Link>
+                                  <Link to={`/event/${event.id}`} className="btn btn-light" variant="danger">Plus d'infos</Link>
                               </Card.Body>
                           </Card>
                           </div>
                               )
                   
                     ))
-                    ) : (
-                    <div className="spinner-border text-center" role="status">
-                       <span className="sr-only">Loading...</span>
-                    </div>
-                    )
+                    
                     }
                         
                     </div>
                 </div>
            <Contact />
        </Fragment>
-    )
+    ) : (
+        <div style={{display: "inline-block"}} className="spinner-border text-center" role="status">
+           <span className="sr-only">Loading...</span>
+        </div>
+        )
 }
 
 export default Home
