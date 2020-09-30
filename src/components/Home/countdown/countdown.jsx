@@ -51,39 +51,50 @@ import moment from "moment";
       }
 
       return (
-          <div>
-              <h1>Delai de reservation</h1>
-              <div className="countdown-wrapper">
+        <section class="counter-section bg-gradient">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="counter-text">
+                  <span>Date de l'évènement</span>
+                  <h3>
+                    Comptez chaque seconde
+                    <br />
+                    jusqu'à l'événement
+                  </h3>
+                </div>
+              </div>
+              <div class="col-lg-8">
+                <div class="cd-timer" id="countdown">
                   {days && (
-                      <div className="countdown-item">
-                          <SVGCircle radius={daysRadius} />
-                          {days}
-                          <span>days</span>
-                      </div>
+                    <div className="cd-item">
+                      <span>{days}</span>
+                      <p>days</p>
+                    </div>
                   )}
                   {hours && (
-                      <div className="countdown-item">
-                          <SVGCircle radius={hoursRadius} />
-                          {hours}
-                          <span>hours</span>
-                      </div>
+                    <div className="cd-item">
+                      <span>{hours}</span>
+                      <p>hours</p>
+                    </div>
                   )}
                   {minutes && (
-                      <div className="countdown-item">
-                          <SVGCircle radius={minutesRadius} />
-                          {minutes}
-                          <span>minutes</span>
-                      </div>
+                    <div className="cd-item">
+                      <span>{minutes}</span>
+                      <p>minutes</p>
+                    </div>
                   )}
                   {seconds && (
-                      <div className="countdown-item">
-                          <SVGCircle radius={secondsRadius} />
-                          {seconds}
-                          <span>seconds</span>
-                      </div>
+                    <div className="cd-item">
+                      <span>{seconds}</span>
+                      <p>seconds</p>
+                    </div>
                   )}
+                </div>
               </div>
+            </div>
           </div>
+        </section>
       );
     }
 
