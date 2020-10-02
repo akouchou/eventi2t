@@ -61,23 +61,23 @@ class Contact extends Component {
                             <div className="col-xl-3 col-lg-4 mt-4" data-aos="fade-up">
                                 <div className="info-box">
                                 <i className="bx bx-map"></i>
-                                <h3>Our Address</h3>
-                                <p>A108 Adam Street, New York, NY 535022</p>
+                                <h3>Address</h3>
+                                <p>Cameroun, Yaoundé , Avenue Germaine</p>
                                 </div>
                             </div>
     
                             <div className="col-xl-3 col-lg-4 mt-4" data-aos="fade-up" data-aos-delay="100">
                                 <div className="info-box">
                                 <i className="bx bx-envelope"></i>
-                                <h3>Email Us</h3>
+                                <h3>Email</h3>
                                 <p>info@example.com<br/>contact@example.com</p>
                                 </div>
                             </div>
                             <div className="col-xl-3 col-lg-4 mt-4" data-aos="fade-up" data-aos-delay="200">
                                 <div className="info-box">
                                     <i className="bx bx-phone-call"></i>
-                                    <h3>Call Us</h3>
-                                    <p>+1 5589 55488 55<br/>+1 6678 254445 41</p>
+                                    <h3>Telephonoe</h3>
+                                    <p>+237 65555555<br/>+237 67788888</p>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@ class Contact extends Component {
                                                 name="name" 
                                                 className="form-control" 
                                                 id="name" 
-                                                placeholder="Your Name" 
+                                                placeholder="Votre Nom" 
                                                 data-rule="minlen:4" 
                                                 data-msg="Please enter at least 4 chars" 
                                                 value={this.state.name}
@@ -104,7 +104,7 @@ class Contact extends Component {
                                                 type="email" 
                                                 className="form-control" 
                                                 name="email" id="email" 
-                                                placeholder="Your Email" 
+                                                placeholder="votre Email" 
                                                 data-rule="email" 
                                                 data-msg="Please enter a valid email" 
                                                 value={this.state.email}
@@ -117,7 +117,7 @@ class Contact extends Component {
                                             type="text" 
                                             className="form-control" 
                                             name="subject" id="subject" 
-                                            placeholder="Subject" 
+                                            placeholder="Sujet" 
                                             data-rule="minlen:4" 
                                             data-msg="Please enter at least 8 chars of subject" 
                                             value={this.state.subject}
@@ -131,7 +131,7 @@ class Contact extends Component {
                                             rows="5" 
                                             data-rule="required" 
                                             data-msg="Please write something for us" 
-                                            placeholder="Message"
+                                            placeholder="votre Message"
                                             value={this.state.message}
                                             onChange={this.handleChange.bind(this, 'message')}></textarea>
                                         <div className="validate"></div>
@@ -139,10 +139,10 @@ class Contact extends Component {
                                     <div className="mb-3">
                                         <div className="loading">Loading</div>
                                         <div className="error-message"></div>
-                                        <div className="sent-message">Your message has been sent. Thank you!</div>
+                                        <div className="sent-message">Votre message a été envoyé, merci!!</div>
                                     </div>
                                     <div className="text-center">
-                                        <button type="submit" style={{textAlign:"center"}}>Send Message</button>
+                                        <button type="submit" style={{textAlign:"center"}}>Envoyer le Message</button>
                                     </div>
                                 </form>
                             </div>

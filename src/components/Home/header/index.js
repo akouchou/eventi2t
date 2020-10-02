@@ -24,6 +24,8 @@ function Header() {
                                 <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#services">Apropos</a></li>
                                 <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#services">Evénements a venir</a></li>
                                 <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#services">Evénements passés</a></li>
+                                <li className="nav-item"><Link to="/faq" className="nav-link text-dark"  href="#hero" style={{ fontSize: '15px' }}>FAQ</Link></li>
+                                
                             </ul>
                         </div>
                     </div> 
