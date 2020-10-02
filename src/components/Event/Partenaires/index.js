@@ -27,7 +27,6 @@ const Partenaire = ({id}) => {
 
   return (
     <Fragment>
-        
           <div className="container">
 
                <div className="section-title">

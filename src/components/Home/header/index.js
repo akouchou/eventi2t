@@ -10,22 +10,31 @@ function Header() {
     return (
         <Fragment>
             <header>
-                <nav id="navbar_top" className="navbar navbar-expand-lg navbar-dark bg-light">
+                <nav id="navbar_top" className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "white" }}>
                     <div className="container">
-                        <a className="navbar-brand text-dark" style={{ fontSize: '20px' }}  href="#">I2T<span>Event</span></a>
-                        <button className="navbar-toggler" style={{ backgroundColor: '#e74c3c' }} type="button" data-toggle="collapse" data-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+                       <div class="logo">
+                        <a href="">
+                            <img src="../assets/img/logo/logo.jpg" width="100px" height="50px" alt=""/>
+                        </a>
+                    </div>
+                        <button className="navbar-toggler bg-gradient"  type="button" data-toggle="collapse" data-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon text-dark" ></span>
                         </button>
-                        <div className="collapse navbar-collapse" id="main_nav">
-                            <ul className="navbar-nav ml-auto">
-                                <li className="active"><Link to="/" className="nav-link text-dark"  href="#hero" style={{ fontSize: '15px' }}>Bienvenue</Link></li>
-                                
+                        <div className="nav-menu mennu collapse navbar-collapse" id="main_nav">
+                           
+                            <ul className="navbar-nav mainmenu ml-auto">
+                                <li className="active">
+                                <Link to="/" className="nav-link text-dark"  href="" style={{ fontSize: '15px' }}>Bienvenue</Link></li>
+
                                 <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#team">Contactez Nous</a></li>
-                                <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#services">Apropos</a></li>
-                                <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#services">Evénements a venir</a></li>
+                                <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#hero">Evénements a venir</a></li>
                                 <li className="nav-item "><a className="nav-link text-dark"  style={{ fontSize:'15px' }} href="#services">Evénements passés</a></li>
+                                <li className="nav-item "><Link className="nav-link text-dark"  style={{ fontSize:'15px' }} to="/faq">Faq</Link></li>
                             </ul>
+                        
+                            
                         </div>
+
                     </div> 
                 </nav>
             </header>

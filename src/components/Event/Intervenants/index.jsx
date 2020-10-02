@@ -33,11 +33,11 @@ const Intervenants = ({id}) => {
                         <h2>Intervenant</h2>
 
                     </div>
-
+                    <div className="row">
                     {
                         tasks.map(spell => (
-                            <div className="row">
-                                <div className="col-md-6 mt-4">
+                            
+                                <div className="col-md-4 mt-4">
                                     <div className="member d-flex align-items-start">
                                         <div className="pic"><img src={spell.urlImageIntervenant}className="img-fluid" alt=""/></div>
                                         <div className="member-info">
@@ -49,9 +49,9 @@ const Intervenants = ({id}) => {
                                     </div>
                                 </div>
 
-                            </div>
+                           
                         )) 
-                    }
+                    } </div>
             </div>  
         </Fragment>
     )
