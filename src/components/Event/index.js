@@ -9,6 +9,7 @@ import Intervenants from './Intervenants'
 import Commentaires from './Commentaires'
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 import MapCard from './CardMaps';
+import Footer from '../Home/footer';
 
 
 const Event = ({ match }) =>  {
@@ -47,7 +48,7 @@ const Event = ({ match }) =>  {
 
         console.log(dataEvent.status);
 
-        return (
+        return loading ? (
           <Fragment>
             <section id="hero">
               <div className="hero-container">
@@ -210,7 +211,12 @@ const Event = ({ match }) =>  {
             <section id="services" className="services section-bg">
               <Partenaire id={id} />
             </section>
+            <Footer />
           </Fragment>
+        ) : (
+          <div id="preloder">
+            <div class="loader"></div>
+          </div>
         );
     }
 

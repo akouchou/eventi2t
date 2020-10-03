@@ -37,6 +37,12 @@ class Firebase {
 
     selectIntervenant = id => this.db.collection('intervenants').where("id_evenement", "==", id)
 
+        /** Recherche */
+        searchEventToCome = (titre) => this.db.collection('evenements').where("status", "==", 2).where("titre", "==", titre)
+        searchPastEvent = (titre) => this.db.collection('evenements').where("status", "==", 3).where("titre", "==", titre)
+        searchPartten = (site) => this.db.collection('partenaire').where("site_du_partenaire", "==", site)
+        searchSpeakers = (nom) => this.db.collection('intervenants').where("nom_intervenant", "==", nom)
+
 }
 
 export default Firebase

@@ -16,7 +16,8 @@ const Commentaires = ({ id }) => {
             id_evenement: id,
             nom_auteur: name,
             commentaire: comment,
-            statut: '0'
+            statut: '0',
+            date: new Date()
 
         }).then(() => alert('commentaire envoyé'))
 
@@ -48,7 +49,7 @@ useEffect(() => {
 
     return(
         <Fragment>
-            <div className="container">
+            <div className="container mb-5">
 
                <div className="section-title">
                   <span style={{ opacity: 0.1, color: "black" }} >Commentaires</span>
@@ -56,41 +57,52 @@ useEffect(() => {
 
                </div>
 
-                <div className="row">
-                    <div className="col-md-5">
-                        <form onSubmit={handleSubmit}>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Votre Nom</label>
-                                <input type="text" onChange={e => setName(e.target.value)} class="form-control" id="nom" placeholder="Entrer votre nom" />               
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Entrer votre commentaire</label>
-                                <textarea onChange={e => setComment(e.target.value)} class="form-control" id="commentaire" rows="3"></textarea>
-                            </div>
-                            <button className="btn btn-success">Soumettre</button>
-                        </form>
-                    </div>
-                    <div className="col-md-7 text-center">
-                        <h6 style={{color: "#F9A6A2", fontWeight: "bold"}} >liste des commentaires sur l'évènement</h6>
+                <div class="chatHistoryContainer">
 
-                        {
-                            loading ? tasks.map(comment => (
-                                
+        <ul class="formComments">
+			
+              {
+                             tasks.map(comment => (
+                                comment.statut == 1 && (
                                     <Fragment>
-                                        <div className="row" style={{backgroundColor: "#F5F3F2", borderRadius: "7px", margin: "3px",padding: "7px"}}>
-                                            <p style={{fontWeight: "bold", marginRight: "7px"}}> {comment.nom_auteur} : </p>  <p> {comment.commentaire} </p>
-                                        </div>
+                                        <li class="commentLi commentstep-1" data-commentid="4">
+                                        <table class="form-comments-table">
+                                            <tr>
+                                                <td><div class="comment-timestamp">{comment.date}</div></td>
+                                                <td><div class="comment-user">{comment.nom_auteur}</div></td>
+                                                
+                                                <td>
+                                                    <div id="comment-4" data-commentid="4" class="comment comment-step1">
+                                                       {comment.nom_auteur}
+                                                    
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </li>
                                     </Fragment>
-                                                        )) : (
-                                <div className="spinner-border text-center" role="status">
-                                   <span className="sr-only">Loading...</span>
-                                </div>
-                            )
+                                )
+                            )) 
                         }
+            
+            
+            
 
-                    </div>
-                </div>
-            </div>
+   </ul>
+</div>
+    <form onSubmit={handleSubmit}>
+ 
+        <div class="input-group input-group-sm chatMessageControls">
+            <input type="text" onChange={e => setName(e.target.value)} class="form-control ml-2 col-lg-2" placeholder="Votre nom" required />    
+            
+            <input type="text" onChange={e => setComment(e.target.value)} class="form-control ml-2" placeholder="Votre commentaire" aria-describedby="sizing-addon4" required />    
+            <span class="input-group-btn">
+
+                <button  class="btn btn-danger ml-1"><i class="fa fa-send"></i>Soumettre</button>
+            </span>
+        </div>
+    </form>
+</div>
         </Fragment>
     )
 }
